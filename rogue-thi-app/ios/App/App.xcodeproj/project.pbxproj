@@ -15,8 +15,44 @@
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		B70D00CC280A1DFE002A0368 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D00CB280A1DFE002A0368 /* MyViewController.swift */; };
+		B7953B7528F227E00049E94A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7953B7428F227E00049E94A /* WidgetKit.framework */; };
+		B7953B7728F227E00049E94A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7953B7628F227E00049E94A /* SwiftUI.framework */; };
+		B7953B7A28F227E00049E94A /* Neuland_Food_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B7928F227E00049E94A /* Neuland_Food_Widget.swift */; };
+		B7953B8328F227E10049E94A /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B7953B8928F228B70049E94A /* FoodWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8828F228B70049E94A /* FoodWidgetProvider.swift */; };
+		B7953B8C28F229130049E94A /* NeulandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8B28F229130049E94A /* NeulandAPI.swift */; };
+		B7953B8D28F229130049E94A /* NeulandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8B28F229130049E94A /* NeulandAPI.swift */; };
+		B7953B9028F22A910049E94A /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8F28F22A910049E94A /* FoodTypes.swift */; };
+		B7953B9128F22A910049E94A /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8F28F22A910049E94A /* FoodTypes.swift */; };
+		B7953B9428F22B270049E94A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B9228F22B270049E94A /* Helper.swift */; };
+		B7953B9528F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */; };
+		B7953B9628F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */; };
 		DDB5406FD599F2E34D187CD1 /* Pods_neuland_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C512FBEFFF4F986DABBB8463 /* Pods_neuland_app.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B7953B8128F227E10049E94A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7953B7228F227E00049E94A;
+			remoteInfo = "Neuland Food WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B7953B8428F227E10049E94A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B7953B8328F227E10049E94A /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1DF3695AA57E707E0F14F7CA /* Pods-neuland.app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.release.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.release.xcconfig"; sourceTree = "<group>"; };
@@ -32,6 +68,16 @@
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
 		B70D00C6280A108C002A0368 /* neuland.app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = neuland.app.entitlements; sourceTree = "<group>"; };
 		B70D00CB280A1DFE002A0368 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Neuland Food WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7953B7428F227E00049E94A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B7953B7628F227E00049E94A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B7953B7928F227E00049E94A /* Neuland_Food_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuland_Food_Widget.swift; sourceTree = "<group>"; };
+		B7953B7E28F227E10049E94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7953B8828F228B70049E94A /* FoodWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodWidgetProvider.swift; sourceTree = "<group>"; };
+		B7953B8B28F229130049E94A /* NeulandAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeulandAPI.swift; sourceTree = "<group>"; };
+		B7953B8F28F22A910049E94A /* FoodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypes.swift; sourceTree = "<group>"; };
+		B7953B9228F22B270049E94A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		B7953B9728F232FE0049E94A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Neuland_Food_Widget.intentdefinition; sourceTree = "<group>"; };
 		C512FBEFFF4F986DABBB8463 /* Pods_neuland_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_neuland_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB001E840F41FA6DB92BE9E8 /* Pods-neuland.app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.debug.xcconfig"; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -46,6 +92,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7953B7028F227E00049E94A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7953B7728F227E00049E94A /* SwiftUI.framework in Frameworks */,
+				B7953B7528F227E00049E94A /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -53,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				C512FBEFFF4F986DABBB8463 /* Pods_neuland_app.framework */,
+				B7953B7428F227E00049E94A /* WidgetKit.framework */,
+				B7953B7628F227E00049E94A /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -62,6 +119,7 @@
 			children = (
 				B70D00C6280A108C002A0368 /* neuland.app.entitlements */,
 				504EC3061FED79650016851F /* App */,
+				B7953B7828F227E00049E94A /* Neuland Food Widget */,
 				504EC3051FED79650016851F /* Products */,
 				7F8756D8B27F46E3366F6CEA /* Pods */,
 				27E2DDA53C4D2A4D1A88CE4A /* Frameworks */,
@@ -72,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				504EC3041FED79650016851F /* neuland.app.app */,
+				B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +138,8 @@
 		504EC3061FED79650016851F /* App */ = {
 			isa = PBXGroup;
 			children = (
+				B7953B8E28F22A770049E94A /* Food */,
+				B7953B8A28F228FC0049E94A /* Services */,
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
 				504EC30B1FED79650016851F /* Main.storyboard */,
@@ -103,6 +164,34 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B7953B7828F227E00049E94A /* Neuland Food Widget */ = {
+			isa = PBXGroup;
+			children = (
+				B7953B7928F227E00049E94A /* Neuland_Food_Widget.swift */,
+				B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */,
+				B7953B7E28F227E10049E94A /* Info.plist */,
+				B7953B8828F228B70049E94A /* FoodWidgetProvider.swift */,
+			);
+			path = "Neuland Food Widget";
+			sourceTree = "<group>";
+		};
+		B7953B8A28F228FC0049E94A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B7953B8B28F229130049E94A /* NeulandAPI.swift */,
+				B7953B9228F22B270049E94A /* Helper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B7953B8E28F22A770049E94A /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				B7953B8F28F22A910049E94A /* FoodTypes.swift */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,15 +204,34 @@
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
 				9592DBEFFC6D2A0C8D5DEB22 /* [CP] Embed Pods Frameworks */,
+				B7953B8428F227E10049E94A /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B7953B8228F227E10049E94A /* PBXTargetDependency */,
 			);
 			name = neuland.app;
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* neuland.app.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B7953B7228F227E00049E94A /* Neuland Food WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7953B8728F227E10049E94A /* Build configuration list for PBXNativeTarget "Neuland Food WidgetExtension" */;
+			buildPhases = (
+				B7953B6F28F227E00049E94A /* Sources */,
+				B7953B7028F227E00049E94A /* Frameworks */,
+				B7953B7128F227E00049E94A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Neuland Food WidgetExtension";
+			productName = "Neuland Food WidgetExtension";
+			productReference = B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -131,13 +239,16 @@
 		504EC2FC1FED79650016851F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					504EC3031FED79650016851F = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
+					};
+					B7953B7228F227E00049E94A = {
+						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
 			};
@@ -155,6 +266,7 @@
 			projectRoot = "";
 			targets = (
 				504EC3031FED79650016851F /* neuland.app */,
+				B7953B7228F227E00049E94A /* Neuland Food WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -170,6 +282,13 @@
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7953B7128F227E00049E94A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,12 +335,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7953B8C28F229130049E94A /* NeulandAPI.swift in Sources */,
 				B70D00CC280A1DFE002A0368 /* MyViewController.swift in Sources */,
+				B7953B9028F22A910049E94A /* FoodTypes.swift in Sources */,
+				B7953B9528F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */,
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B7953B6F28F227E00049E94A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7953B8D28F229130049E94A /* NeulandAPI.swift in Sources */,
+				B7953B8928F228B70049E94A /* FoodWidgetProvider.swift in Sources */,
+				B7953B9128F22A910049E94A /* FoodTypes.swift in Sources */,
+				B7953B9628F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */,
+				B7953B7A28F227E00049E94A /* Neuland_Food_Widget.swift in Sources */,
+				B7953B9428F22B270049E94A /* Helper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7953B8228F227E10049E94A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7953B7228F227E00049E94A /* Neuland Food WidgetExtension */;
+			targetProxy = B7953B8128F227E10049E94A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		504EC30B1FED79650016851F /* Main.storyboard */ = {
@@ -238,6 +381,14 @@
 				504EC3111FED79650016851F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7953B9728F232FE0049E94A /* Base */,
+			);
+			name = Neuland_Food_Widget.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -355,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB001E840F41FA6DB92BE9E8 /* Pods-neuland.app.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = neuland.app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -382,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1DF3695AA57E707E0F14F7CA /* Pods-neuland.app.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = neuland.app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -404,6 +557,75 @@
 			};
 			name = Release;
 		};
+		B7953B8528F227E10049E94A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FSXB76X6V2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Neuland Food Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Neuland Food Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.neuland-ingolstadt.neuland-app.Neuland-Food-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B7953B8628F227E10049E94A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FSXB76X6V2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Neuland Food Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Neuland Food Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.neuland-ingolstadt.neuland-app.Neuland-Food-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -421,6 +643,15 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7953B8728F227E10049E94A /* Build configuration list for PBXNativeTarget "Neuland Food WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7953B8528F227E10049E94A /* Debug */,
+				B7953B8628F227E10049E94A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
