@@ -15,7 +15,7 @@ import AppTabbar from '../../components/page/AppTabbar'
 
 import { formatFriendlyTime, formatNearDate } from '../../lib/date-utils'
 import API from '../../lib/backend/authenticated-api'
-import { NoSessionError } from '../../lib/backend/thi-session-handler'
+import { NoSessionError, UnavailableSessionError } from '../../lib/backend/thi-session-handler'
 
 import styles from '../../styles/RoomsList.module.css'
 
@@ -57,7 +57,7 @@ export default function RoomList () {
 
         setFreeRooms(days)
       } catch (e) {
-        if (e instanceof NoSessionError) {
+        if (e instanceof NoSessionError || e instanceof UnavailableSessionError) {
           router.replace('/login?redirect=rooms%2Flist')
         } else {
           console.error(e)
@@ -70,16 +70,7 @@ export default function RoomList () {
 
   return (
     <AppContainer>
-      <AppNavbar title="Stündlicher Raumplan">
-        <AppNavbar.Overflow>
-          <AppNavbar.Overflow.Link variant="link" href="/rooms">
-            Kartenansicht
-          </AppNavbar.Overflow.Link>
-          <AppNavbar.Overflow.Link variant="link" href="/rooms/search">
-            Erweiterte Suche
-          </AppNavbar.Overflow.Link>
-        </AppNavbar.Overflow>
-      </AppNavbar>
+      <AppNavbar title="Stündlicher Raumplan" />
 
       <AppBody>
         <ReactPlaceholder type="text" rows={20} ready={freeRooms}>

@@ -6,8 +6,9 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
 import ReactPlaceholder from 'react-placeholder'
 
+import { faExternalLink, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 
 import SwipeableTabs, { SwipeableTab } from '../components/SwipeableTabs'
 import AppBody from '../components/page/AppBody'
@@ -23,10 +24,12 @@ import {
   formatFriendlyRelativeTime
 } from '../lib/date-utils'
 import NeulandAPI from '../lib/backend/neuland-api'
-import { NoSessionError } from '../lib/backend/thi-session-handler'
+import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
 import { useTime } from '../lib/hooks/time-hook'
 
 import styles from '../styles/Calendar.module.css'
+
+import clubs from '../data/clubs.json'
 
 export default function Calendar () {
   const router = useRouter()
@@ -34,6 +37,7 @@ export default function Calendar () {
   const [exams, setExams] = useState(null)
   const [events, setEvents] = useState(null)
   const [focusedExam, setFocusedExam] = useState(null)
+  const [isGuest, setIsGuest] = useState(false)
 
   useEffect(() => {
     async function load () {
@@ -43,6 +47,8 @@ export default function Calendar () {
       } catch (e) {
         if (e instanceof NoSessionError) {
           router.replace('/login?redirect=calendar')
+        } else if (e instanceof UnavailableSessionError) {
+          setIsGuest(true)
         } else {
           console.error(e)
           alert(e)
@@ -54,13 +60,9 @@ export default function Calendar () {
 
   useEffect(() => {
     async function load () {
-      const [campusLifeEvents, thiEvents] = await Promise.all([
-        NeulandAPI.getCampusLifeEvents(),
-        NeulandAPI.getThiEvents()
-      ])
+      const campusLifeEvents = await NeulandAPI.getCampusLifeEvents()
 
       const newEvents = campusLifeEvents
-        .concat(thiEvents)
         .map(x => ({
           ...x,
           begin: x.begin ? new Date(x.begin) : null,
@@ -131,11 +133,17 @@ export default function Calendar () {
                 </ListGroup.Item>
               )}
             </ListGroup>
+            <div className="text-muted">
+              <small>
+                Alle Angaben ohne Gewähr.
+                Verbindliche Informationen gibt es nur direkt auf der <a href="https://www.thi.de/studium/pruefung/semestertermine/" target="_blank" rel="noreferrer">Webseite der Hochschule</a>.
+              </small>
+            </div>
           </SwipeableTab>
 
           <SwipeableTab className={styles.tab} title="Prüfungen">
             <ListGroup variant="flush">
-              <ReactPlaceholder type="text" rows={4} ready={exams}>
+              <ReactPlaceholder type="text" rows={4} ready={exams || isGuest}>
                 {exams && exams.length === 0 && (
                   <ListGroup.Item>
                     Es sind derzeit keine Prüfungstermine verfügbar.
@@ -158,8 +166,19 @@ export default function Calendar () {
                     </div>
                   </ListGroup.Item>
                 )}
+                {isGuest && (
+                  <ListGroup.Item>
+                    Prüfungstermine sind als Gast nicht verfügbar.
+                  </ListGroup.Item>
+                )}
               </ReactPlaceholder>
             </ListGroup>
+            <div className="text-muted">
+              <small>
+                Alle Angaben ohne Gewähr.
+                Verbindliche Informationen gibt es nur direkt auf der <a href="https://www3.primuss.de/cgi-bin/login/index.pl?FH=fhin" target="_blank" rel="noreferrer">Webseite der Hochschule</a>.
+              </small>
+            </div>
           </SwipeableTab>
 
           <SwipeableTab className={styles.tab} title="Veranstaltungen">
@@ -170,21 +189,43 @@ export default function Calendar () {
                     Es sind derzeit keine Veranstaltungstermine verfügbar.
                   </ListGroup.Item>
                 )}
-                {events && events.map((item, idx) =>
-                  <ListGroup.Item key={idx} className={styles.item}>
-                    <div className={styles.left}>
-                      {!item.url && item.title}
-                      {item.url && (
-                        <a href={item.url} className={styles.eventUrl} target="_blank" rel="noreferrer">
-                          {item.title}
-                          {' '}
-                          <FontAwesomeIcon icon={faExternalLinkAlt} />
-                        </a>
-                      )}
-                      <div className={styles.details}>
-                        {item.organizer} <br />
-                        {item.begin && formatFriendlyDateTimeRange(item.begin, item.end)}
-                      </div>
+                {events && events.map((item, idx) => {
+                  const club = clubs.find(club => club.club === item.organizer)
+                  return <ListGroup.Item key={idx} className={styles.item}>
+                        <div className={styles.left}>
+                          {!item.url && item.title}
+                          {item.url && (
+                              <a href={item.url} className={styles.eventUrl} target="_blank" rel="noreferrer">
+                                {item.title}
+                                {' '}
+                                <FontAwesomeIcon icon={faExternalLinkAlt}/>
+                              </a>
+                          )}
+                          <div className={styles.details}>
+                        <span>
+                          { club != null &&
+                            <>
+                              {club.website != null &&
+                                <a href={club.website} className={styles.eventUrl} target="_blank" rel="noreferrer">
+                                  {item.organizer}<FontAwesomeIcon icon={faExternalLink} fixedWidth/>
+                                </a>
+                              }
+                              {club.instagram != null &&
+                                <a href={club.instagram} className={styles.eventUrl} target="_blank" rel="noreferrer">
+                                  <FontAwesomeIcon icon={faInstagram} fixedWidth/>
+                                </a>
+                              }
+                            </>
+                          }
+                          { club == null &&
+                              <>
+                                {item.organizer}
+                              </>
+                          }
+                        </span>
+                            <br/>
+                            {item.begin && formatFriendlyDateTimeRange(item.begin, item.end)}
+                          </div>
 
                     </div>
                     <div className={styles.details}>
@@ -193,6 +234,7 @@ export default function Calendar () {
                         : formatFriendlyRelativeTime(item.begin)}
                     </div>
                   </ListGroup.Item>
+                }
                 )}
               </ReactPlaceholder>
             </ListGroup>

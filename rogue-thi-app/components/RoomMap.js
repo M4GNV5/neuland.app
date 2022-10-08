@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Form from 'react-bootstrap/Form'
@@ -8,7 +10,7 @@ import { AttributionControl, FeatureGroup, LayerGroup, LayersControl, MapContain
 
 import { filterRooms, getNextValidDate } from '../lib/backend-utils/rooms-utils'
 import { formatFriendlyTime, formatISODate, formatISOTime } from '../lib/date-utils'
-import { NoSessionError } from '../lib/backend/thi-session-handler'
+import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
 
 import styles from '../styles/RoomMap.module.css'
 
@@ -23,10 +25,11 @@ const SEARCHED_PROPERTIES = [
   'Funktion'
 ]
 const FLOOR_SUBSTITUTES = {
+  0: 'EG', // room G0099
   OG: '1', // floor 1 in H (Carissma)
   AG: '1.5', // floor 1.5 in A
   G: '1.5', // floor 1.5 in H (Reimanns)
-  null: '4' // floor 4 in Z (Arbeitsamt)
+  null: '4' // floor 4 in Z (Arbeitsamt),
 }
 const FLOOR_ORDER = [
   '4',
@@ -103,7 +106,7 @@ export default function RoomMap ({ highlight, roomData }) {
         const rooms = await filterRooms(date, time)
         setAvailableRooms(rooms)
       } catch (e) {
-        if (e instanceof NoSessionError) {
+        if (e instanceof NoSessionError || e instanceof UnavailableSessionError) {
           setAvailableRooms(null)
         } else {
           console.error(e)
@@ -189,6 +192,11 @@ export default function RoomMap ({ highlight, roomData }) {
           isInvalid={filteredRooms.length === 0}
           ref={searchField}
         />
+        <Link href="/rooms/search">
+          <a className={styles.linkToSearch}>
+            Erweiterte Suche
+          </a>
+        </Link>
       </Form>
 
       <MapContainer

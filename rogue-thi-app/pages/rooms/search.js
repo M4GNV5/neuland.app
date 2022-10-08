@@ -17,11 +17,11 @@ import AppTabbar from '../../components/page/AppTabbar'
 
 import { BUILDINGS_ALL, DURATION_PRESET, filterRooms, getNextValidDate } from '../../lib/backend-utils/rooms-utils'
 import { formatFriendlyTime, formatISODate, formatISOTime } from '../../lib/date-utils'
-import { NoSessionError } from '../../lib/backend/thi-session-handler'
+import { NoSessionError, UnavailableSessionError } from '../../lib/backend/thi-session-handler'
 
-import styles from '../../styles/RoomsList.module.css'
+import styles from '../../styles/RoomsSearch.module.css'
 
-const BUILDINGS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'M', 'P', 'W', 'Z']
+const BUILDINGS = ['A', 'B', 'BN', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'M', 'P', 'W', 'Z']
 const DURATIONS = ['00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45', '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45', '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45', '06:00']
 const TUX_ROOMS = ['G308']
 
@@ -52,7 +52,7 @@ export default function Rooms () {
       try {
         await filter()
       } catch (e) {
-        if (e instanceof NoSessionError) {
+        if (e instanceof NoSessionError || e instanceof UnavailableSessionError) {
           router.replace('/login?redirect=rooms%2Fsearch')
         } else {
           console.error(e)
@@ -65,16 +65,7 @@ export default function Rooms () {
 
   return (
     <AppContainer>
-      <AppNavbar title="Raumsuche">
-        <AppNavbar.Overflow>
-          <AppNavbar.Overflow.Link variant="link" href="/rooms">
-            Kartenansicht
-          </AppNavbar.Overflow.Link>
-          <AppNavbar.Overflow.Link variant="link" href="/rooms/list">
-            Listenansicht
-          </AppNavbar.Overflow.Link>
-        </AppNavbar.Overflow>
-      </AppNavbar>
+      <AppNavbar title="Erweiterte Raumsuche" />
 
       <AppBody>
         <Form>
@@ -104,7 +95,7 @@ export default function Rooms () {
             </Form.Group>
             <Form.Group>
               <Form.Label>
-                Zeit
+                Uhrzeit
               </Form.Label>
               <Form.Control
                 type="time"
@@ -154,7 +145,7 @@ export default function Rooms () {
               )}
               {filterResults && filterResults.length === 0 &&
                 <ListGroup.Item className={styles.item}>
-                  Keine Ergebnisse
+                  Keine freien Räume gefunden.
                 </ListGroup.Item>
               }
             </ListGroup>
