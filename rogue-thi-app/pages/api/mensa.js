@@ -13,6 +13,10 @@ function parseGermanFloat (str) {
   return parseFloat(str.replace(',', '.'))
 }
 
+function parseNutritionFloat (str) {
+  return str._text ? parseGermanFloat(str._text) : ''
+}
+
 function parseDataFromXml (xml) {
   const sourceData = xmljs.xml2js(xml, { compact: true })
   const now = new Date()
@@ -60,6 +64,18 @@ function parseDataFromXml (xml) {
         }
       }
 
+      const nutrition = {
+        kj: parseNutritionFloat(item.kj),
+        kcal: parseNutritionFloat(item.kcal),
+        fat: parseNutritionFloat(item.fett),
+        fatSaturated: parseNutritionFloat(item.gesfett),
+        carbs: parseNutritionFloat(item.kh),
+        sugar: parseNutritionFloat(item.zucker),
+        fiber: parseNutritionFloat(item.ballaststoffe),
+        protein: parseNutritionFloat(item.eiweiss),
+        salt: parseNutritionFloat(item.salz)
+      }
+
       return {
         name: text.trim(),
         prices: {
@@ -68,7 +84,8 @@ function parseDataFromXml (xml) {
           guest: parseGermanFloat(item.preis3._text)
         },
         allergens: [...allergens],
-        flags
+        flags,
+        nutrition
       }
     })
 

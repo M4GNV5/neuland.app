@@ -6,17 +6,16 @@ import { useRouter } from 'next/router'
 
 import Form from 'react-bootstrap/Form'
 
-import { AttributionControl, FeatureGroup, LayerGroup, LayersControl, MapContainer, Polygon, Popup, TileLayer } from 'react-leaflet'
+import { AttributionControl, FeatureGroup, LayerGroup, LayersControl, MapContainer, Polygon, CircleMarker, Popup, TileLayer } from 'react-leaflet'
 
+import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
 import { filterRooms, getNextValidDate } from '../lib/backend-utils/rooms-utils'
 import { formatFriendlyTime, formatISODate, formatISOTime } from '../lib/date-utils'
-import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
+import { useLocation } from '../lib/hooks/geolocation'
 
 import styles from '../styles/RoomMap.module.css'
 
 const SPECIAL_ROOMS = {
-  C073: { text: 'Kostenlose Menstruationsprodukte verfügbar', color: '#EB749A' },
-  D171: { text: 'Kostenlose Menstruationsprodukte verfügbar', color: '#EB749A' },
   G308: { text: 'Linux PC-Pool', color: '#F5BD0C' }
 }
 const SEARCHED_PROPERTIES = [
@@ -46,6 +45,7 @@ const SPECIAL_COLORS = [...new Set(Object.values(SPECIAL_ROOMS).map(x => x.color
 export default function RoomMap ({ highlight, roomData }) {
   const router = useRouter()
   const searchField = useRef()
+  const location = useLocation()
   const [searchText, setSearchText] = useState(highlight ? highlight.toUpperCase() : '')
   const [availableRooms, setAvailableRooms] = useState(null)
 
@@ -79,8 +79,8 @@ export default function RoomMap ({ highlight, roomData }) {
       return [allRooms, DEFAULT_CENTER]
     }
 
-    const getProp = (room, prop) => room.properties[prop].toUpperCase()
-    const fullTextSearcher = room => SEARCHED_PROPERTIES.some(x => getProp(room, x).indexOf(searchText) !== -1)
+    const getProp = (room, prop) => room.properties[prop]?.toUpperCase()
+    const fullTextSearcher = room => SEARCHED_PROPERTIES.some(x => getProp(room, x)?.includes(searchText))
     const roomOnlySearcher = room => getProp(room, 'Raum').startsWith(searchText)
     const filtered = allRooms.filter(/^[A-Z](G|[0-9E]\.)?\d*$/.test(searchText) ? roomOnlySearcher : fullTextSearcher)
 
@@ -253,6 +253,18 @@ export default function RoomMap ({ highlight, roomData }) {
               </LayersControl.BaseLayer>
             ))}
         </LayersControl>
+
+        {location &&
+          <CircleMarker
+            center={[location.latitude, location.longitude]}
+            fillOpacity={1.0}
+            color='#ffffff'
+            fillColor='rgb(51, 136, 255)'
+            radius={8}
+            weight={3}
+            className={styles.locationMarker}
+          />
+        }
       </MapContainer>
     </>
   )
