@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,43 +11,45 @@
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
 		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
-		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
-		B70D00CC280A1DFE002A0368 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D00CB280A1DFE002A0368 /* MyViewController.swift */; };
-		B7953B7528F227E00049E94A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7953B7428F227E00049E94A /* WidgetKit.framework */; };
-		B7953B7728F227E00049E94A /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7953B7628F227E00049E94A /* SwiftUI.framework */; };
-		B7953B7A28F227E00049E94A /* Neuland_Food_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B7928F227E00049E94A /* Neuland_Food_Widget.swift */; };
-		B7953B8328F227E10049E94A /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B7953B8928F228B70049E94A /* FoodWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8828F228B70049E94A /* FoodWidgetProvider.swift */; };
-		B7953B8C28F229130049E94A /* NeulandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8B28F229130049E94A /* NeulandAPI.swift */; };
-		B7953B8D28F229130049E94A /* NeulandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8B28F229130049E94A /* NeulandAPI.swift */; };
-		B7953B9028F22A910049E94A /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8F28F22A910049E94A /* FoodTypes.swift */; };
-		B7953B9128F22A910049E94A /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B8F28F22A910049E94A /* FoodTypes.swift */; };
-		B7953B9428F22B270049E94A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7953B9228F22B270049E94A /* Helper.swift */; };
-		B7953B9528F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */; };
-		B7953B9628F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */; };
-		DDB5406FD599F2E34D187CD1 /* Pods_neuland_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C512FBEFFF4F986DABBB8463 /* Pods_neuland_app.framework */; };
+		B7D94AE8297C805D003DF854 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94AE7297C805D003DF854 /* MyViewController.swift */; };
+		B7D94AEA297C808C003DF854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D94AE9297C808C003DF854 /* Assets.xcassets */; };
+		B7D94AF1297C8327003DF854 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D94AF0297C8326003DF854 /* WidgetKit.framework */; };
+		B7D94AF3297C8327003DF854 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D94AF2297C8327003DF854 /* SwiftUI.framework */; };
+		B7D94AFB297C8328003DF854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D94AFA297C8328003DF854 /* Assets.xcassets */; };
+		B7D94AFD297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */; };
+		B7D94AFE297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */; };
+		B7D94B01297C8328003DF854 /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B7D94AEF297C8326003DF854 /* Neuland Food WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B7D94B0A297C83AC003DF854 /* FoodWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B07297C83AC003DF854 /* FoodWidgetProvider.swift */; };
+		B7D94B0B297C83AC003DF854 /* Neuland_Food_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B08297C83AC003DF854 /* Neuland_Food_Widget.swift */; };
+		B7D94B11297C841C003DF854 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B0D297C841C003DF854 /* Helper.swift */; };
+		B7D94B12297C841C003DF854 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B0D297C841C003DF854 /* Helper.swift */; };
+		B7D94B13297C841C003DF854 /* NeulandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B0E297C841C003DF854 /* NeulandAPI.swift */; };
+		B7D94B14297C841C003DF854 /* NeulandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B0E297C841C003DF854 /* NeulandAPI.swift */; };
+		B7D94B15297C841C003DF854 /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B10297C841C003DF854 /* FoodTypes.swift */; };
+		B7D94B16297C841C003DF854 /* FoodTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B10297C841C003DF854 /* FoodTypes.swift */; };
+		C6EF09C9FFE4F86EDCB45804 /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369B54FA4DEA85677E877F49 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B7953B8128F227E10049E94A /* PBXContainerItemProxy */ = {
+		B7D94AFF297C8328003DF854 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B7953B7228F227E00049E94A;
+			remoteGlobalIDString = B7D94AEE297C8326003DF854;
 			remoteInfo = "Neuland Food WidgetExtension";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B7953B8428F227E10049E94A /* Embed Foundation Extensions */ = {
+		B7D94B05297C8328003DF854 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B7953B8328F227E10049E94A /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */,
+				B7D94B01297C8328003DF854 /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,31 +57,31 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1DF3695AA57E707E0F14F7CA /* Pods-neuland.app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.release.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.release.xcconfig"; sourceTree = "<group>"; };
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		369B54FA4DEA85677E877F49 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
-		504EC3041FED79650016851F /* neuland.app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = neuland.app.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		504EC30C1FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		504EC30E1FED79650016851F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		ACE1C154306C57C0EFECA3AE /* Pods-neuland.app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.release.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.release.xcconfig"; sourceTree = "<group>"; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
-		B70D00C6280A108C002A0368 /* neuland.app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = neuland.app.entitlements; sourceTree = "<group>"; };
-		B70D00CB280A1DFE002A0368 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
-		B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Neuland Food WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7953B7428F227E00049E94A /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		B7953B7628F227E00049E94A /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		B7953B7928F227E00049E94A /* Neuland_Food_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Neuland_Food_Widget.swift; sourceTree = "<group>"; };
-		B7953B7E28F227E10049E94A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B7953B8828F228B70049E94A /* FoodWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodWidgetProvider.swift; sourceTree = "<group>"; };
-		B7953B8B28F229130049E94A /* NeulandAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeulandAPI.swift; sourceTree = "<group>"; };
-		B7953B8F28F22A910049E94A /* FoodTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTypes.swift; sourceTree = "<group>"; };
-		B7953B9228F22B270049E94A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		B7953B9728F232FE0049E94A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Neuland_Food_Widget.intentdefinition; sourceTree = "<group>"; };
-		C512FBEFFF4F986DABBB8463 /* Pods_neuland_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_neuland_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB001E840F41FA6DB92BE9E8 /* Pods-neuland.app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.debug.xcconfig"; sourceTree = "<group>"; };
+		B7D94AE7297C805D003DF854 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		B7D94AE9297C808C003DF854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B7D94AEF297C8326003DF854 /* Neuland Food WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Neuland Food WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7D94AF0297C8326003DF854 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B7D94AF2297C8327003DF854 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Neuland_Food_Widget.intentdefinition; sourceTree = "<group>"; };
+		B7D94AFA297C8328003DF854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B7D94AFC297C8328003DF854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7D94B07297C83AC003DF854 /* FoodWidgetProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodWidgetProvider.swift; sourceTree = "<group>"; };
+		B7D94B08297C83AC003DF854 /* Neuland_Food_Widget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Neuland_Food_Widget.swift; sourceTree = "<group>"; };
+		B7D94B0D297C841C003DF854 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		B7D94B0E297C841C003DF854 /* NeulandAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeulandAPI.swift; sourceTree = "<group>"; };
+		B7D94B10297C841C003DF854 /* FoodTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodTypes.swift; sourceTree = "<group>"; };
+		C6C712F0418BBFC4F84460E1 /* Pods-neuland.app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.debug.xcconfig"; sourceTree = "<group>"; };
 		FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,16 +90,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDB5406FD599F2E34D187CD1 /* Pods_neuland_app.framework in Frameworks */,
+				C6EF09C9FFE4F86EDCB45804 /* Pods_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B7953B7028F227E00049E94A /* Frameworks */ = {
+		B7D94AEC297C8326003DF854 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7953B7728F227E00049E94A /* SwiftUI.framework in Frameworks */,
-				B7953B7528F227E00049E94A /* WidgetKit.framework in Frameworks */,
+				B7D94AF3297C8327003DF854 /* SwiftUI.framework in Frameworks */,
+				B7D94AF1297C8327003DF854 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,9 +109,9 @@
 		27E2DDA53C4D2A4D1A88CE4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C512FBEFFF4F986DABBB8463 /* Pods_neuland_app.framework */,
-				B7953B7428F227E00049E94A /* WidgetKit.framework */,
-				B7953B7628F227E00049E94A /* SwiftUI.framework */,
+				B7D94AF0297C8326003DF854 /* WidgetKit.framework */,
+				B7D94AF2297C8327003DF854 /* SwiftUI.framework */,
+				369B54FA4DEA85677E877F49 /* Pods_App.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,9 +119,8 @@
 		504EC2FB1FED79650016851F = {
 			isa = PBXGroup;
 			children = (
-				B70D00C6280A108C002A0368 /* neuland.app.entitlements */,
 				504EC3061FED79650016851F /* App */,
-				B7953B7828F227E00049E94A /* Neuland Food Widget */,
+				B7D94AF4297C8327003DF854 /* Neuland Food Widget */,
 				504EC3051FED79650016851F /* Products */,
 				7F8756D8B27F46E3366F6CEA /* Pods */,
 				27E2DDA53C4D2A4D1A88CE4A /* Frameworks */,
@@ -129,8 +130,8 @@
 		504EC3051FED79650016851F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				504EC3041FED79650016851F /* neuland.app.app */,
-				B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */,
+				504EC3041FED79650016851F /* App.app */,
+				B7D94AEF297C8326003DF854 /* Neuland Food WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,17 +139,17 @@
 		504EC3061FED79650016851F /* App */ = {
 			isa = PBXGroup;
 			children = (
-				B7953B8E28F22A770049E94A /* Food */,
-				B7953B8A28F228FC0049E94A /* Services */,
+				B7D94B0F297C841C003DF854 /* Food */,
+				B7D94B0C297C841C003DF854 /* Services */,
+				B7D94AE7297C805D003DF854 /* MyViewController.swift */,
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
 				504EC30B1FED79650016851F /* Main.storyboard */,
-				504EC30E1FED79650016851F /* Assets.xcassets */,
+				B7D94AE9297C808C003DF854 /* Assets.xcassets */,
 				504EC3101FED79650016851F /* LaunchScreen.storyboard */,
 				504EC3131FED79650016851F /* Info.plist */,
 				2FAD9762203C412B000D30F8 /* config.xml */,
 				50B271D01FEDC1A000F3C39B /* public */,
-				B70D00CB280A1DFE002A0368 /* MyViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -158,36 +159,37 @@
 			children = (
 				FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */,
 				AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */,
-				FB001E840F41FA6DB92BE9E8 /* Pods-neuland.app.debug.xcconfig */,
-				1DF3695AA57E707E0F14F7CA /* Pods-neuland.app.release.xcconfig */,
+				C6C712F0418BBFC4F84460E1 /* Pods-neuland.app.debug.xcconfig */,
+				ACE1C154306C57C0EFECA3AE /* Pods-neuland.app.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		B7953B7828F227E00049E94A /* Neuland Food Widget */ = {
+		B7D94AF4297C8327003DF854 /* Neuland Food Widget */ = {
 			isa = PBXGroup;
 			children = (
-				B7953B7928F227E00049E94A /* Neuland_Food_Widget.swift */,
-				B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */,
-				B7953B7E28F227E10049E94A /* Info.plist */,
-				B7953B8828F228B70049E94A /* FoodWidgetProvider.swift */,
+				B7D94B07297C83AC003DF854 /* FoodWidgetProvider.swift */,
+				B7D94B08297C83AC003DF854 /* Neuland_Food_Widget.swift */,
+				B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */,
+				B7D94AFA297C8328003DF854 /* Assets.xcassets */,
+				B7D94AFC297C8328003DF854 /* Info.plist */,
 			);
 			path = "Neuland Food Widget";
 			sourceTree = "<group>";
 		};
-		B7953B8A28F228FC0049E94A /* Services */ = {
+		B7D94B0C297C841C003DF854 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B7953B8B28F229130049E94A /* NeulandAPI.swift */,
-				B7953B9228F22B270049E94A /* Helper.swift */,
+				B7D94B0D297C841C003DF854 /* Helper.swift */,
+				B7D94B0E297C841C003DF854 /* NeulandAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		B7953B8E28F22A770049E94A /* Food */ = {
+		B7D94B0F297C841C003DF854 /* Food */ = {
 			isa = PBXGroup;
 			children = (
-				B7953B8F28F22A910049E94A /* FoodTypes.swift */,
+				B7D94B10297C841C003DF854 /* FoodTypes.swift */,
 			);
 			path = Food;
 			sourceTree = "<group>";
@@ -195,34 +197,34 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		504EC3031FED79650016851F /* neuland.app */ = {
+		504EC3031FED79650016851F /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "neuland.app" */;
+			buildConfigurationList = 504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				6634F4EFEBD30273BCE97C65 /* [CP] Check Pods Manifest.lock */,
 				504EC3001FED79650016851F /* Sources */,
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
 				9592DBEFFC6D2A0C8D5DEB22 /* [CP] Embed Pods Frameworks */,
-				B7953B8428F227E10049E94A /* Embed Foundation Extensions */,
+				B7D94B05297C8328003DF854 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B7953B8228F227E10049E94A /* PBXTargetDependency */,
+				B7D94B00297C8328003DF854 /* PBXTargetDependency */,
 			);
-			name = neuland.app;
+			name = App;
 			productName = App;
-			productReference = 504EC3041FED79650016851F /* neuland.app.app */;
+			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B7953B7228F227E00049E94A /* Neuland Food WidgetExtension */ = {
+		B7D94AEE297C8326003DF854 /* Neuland Food WidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B7953B8728F227E10049E94A /* Build configuration list for PBXNativeTarget "Neuland Food WidgetExtension" */;
+			buildConfigurationList = B7D94B02297C8328003DF854 /* Build configuration list for PBXNativeTarget "Neuland Food WidgetExtension" */;
 			buildPhases = (
-				B7953B6F28F227E00049E94A /* Sources */,
-				B7953B7028F227E00049E94A /* Frameworks */,
-				B7953B7128F227E00049E94A /* Resources */,
+				B7D94AEB297C8326003DF854 /* Sources */,
+				B7D94AEC297C8326003DF854 /* Frameworks */,
+				B7D94AED297C8326003DF854 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -230,7 +232,7 @@
 			);
 			name = "Neuland Food WidgetExtension";
 			productName = "Neuland Food WidgetExtension";
-			productReference = B7953B7328F227E00049E94A /* Neuland Food WidgetExtension.appex */;
+			productReference = B7D94AEF297C8326003DF854 /* Neuland Food WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -239,7 +241,7 @@
 		504EC2FC1FED79650016851F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 0920;
 				TargetAttributes = {
 					504EC3031FED79650016851F = {
@@ -247,13 +249,14 @@
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
-					B7953B7228F227E00049E94A = {
-						CreatedOnToolsVersion = 14.0.1;
+					B7D94AEE297C8326003DF854 = {
+						CreatedOnToolsVersion = 14.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 504EC2FF1FED79650016851F /* Build configuration list for PBXProject "App" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -265,8 +268,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				504EC3031FED79650016851F /* neuland.app */,
-				B7953B7228F227E00049E94A /* Neuland Food WidgetExtension */,
+				504EC3031FED79650016851F /* App */,
+				B7D94AEE297C8326003DF854 /* Neuland Food WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -278,17 +281,18 @@
 			files = (
 				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
 				50B271D11FEDC1A000F3C39B /* public in Resources */,
-				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
 				504EC30D1FED79650016851F /* Main.storyboard in Resources */,
+				B7D94AEA297C808C003DF854 /* Assets.xcassets in Resources */,
 				2FAD9763203C412B000D30F8 /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B7953B7128F227E00049E94A /* Resources */ = {
+		B7D94AED297C8326003DF854 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D94AFB297C8328003DF854 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +310,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-neuland.app-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-App-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -318,14 +322,14 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
+			inputPaths = (
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-neuland.app/Pods-neuland.app-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-App/Pods-App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -335,34 +339,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7953B8C28F229130049E94A /* NeulandAPI.swift in Sources */,
-				B70D00CC280A1DFE002A0368 /* MyViewController.swift in Sources */,
-				B7953B9028F22A910049E94A /* FoodTypes.swift in Sources */,
-				B7953B9528F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */,
+				B7D94AE8297C805D003DF854 /* MyViewController.swift in Sources */,
+				B7D94B15297C841C003DF854 /* FoodTypes.swift in Sources */,
+				B7D94AFE297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */,
+				B7D94B13297C841C003DF854 /* NeulandAPI.swift in Sources */,
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+				B7D94B11297C841C003DF854 /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B7953B6F28F227E00049E94A /* Sources */ = {
+		B7D94AEB297C8326003DF854 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7953B8D28F229130049E94A /* NeulandAPI.swift in Sources */,
-				B7953B8928F228B70049E94A /* FoodWidgetProvider.swift in Sources */,
-				B7953B9128F22A910049E94A /* FoodTypes.swift in Sources */,
-				B7953B9628F232FE0049E94A /* Neuland_Food_Widget.intentdefinition in Sources */,
-				B7953B7A28F227E00049E94A /* Neuland_Food_Widget.swift in Sources */,
-				B7953B9428F22B270049E94A /* Helper.swift in Sources */,
+				B7D94B0A297C83AC003DF854 /* FoodWidgetProvider.swift in Sources */,
+				B7D94B0B297C83AC003DF854 /* Neuland_Food_Widget.swift in Sources */,
+				B7D94B14297C841C003DF854 /* NeulandAPI.swift in Sources */,
+				B7D94B12297C841C003DF854 /* Helper.swift in Sources */,
+				B7D94B16297C841C003DF854 /* FoodTypes.swift in Sources */,
+				B7D94AFD297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B7953B8228F227E10049E94A /* PBXTargetDependency */ = {
+		B7D94B00297C8328003DF854 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B7953B7228F227E00049E94A /* Neuland Food WidgetExtension */;
-			targetProxy = B7953B8128F227E10049E94A /* PBXContainerItemProxy */;
+			target = B7D94AEE297C8326003DF854 /* Neuland Food WidgetExtension */;
+			targetProxy = B7D94AFF297C8328003DF854 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -381,14 +386,6 @@
 				504EC3111FED79650016851F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		B7953B9828F232FE0049E94A /* Neuland_Food_Widget.intentdefinition */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B7953B9728F232FE0049E94A /* Base */,
-			);
-			name = Neuland_Food_Widget.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -442,7 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -493,37 +490,32 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		504EC3171FED79650016851F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB001E840F41FA6DB92BE9E8 /* Pods-neuland.app.debug.xcconfig */;
+			baseConfigurationReference = FC68EB0AF532CFC21C3344DD /* Pods-App.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = neuland.app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = FSXB76X6V2;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = neuland.app;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.neuland-ingolstadt.neuland-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -532,32 +524,28 @@
 		};
 		504EC3181FED79650016851F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DF3695AA57E707E0F14F7CA /* Pods-neuland.app.release.xcconfig */;
+			baseConfigurationReference = AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = neuland.app.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = FSXB76X6V2;
 				INFOPLIST_FILE = App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = neuland.app;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.neuland-ingolstadt.neuland-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		B7953B8528F227E10049E94A /* Debug */ = {
+		B7D94B03297C8328003DF854 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -568,18 +556,14 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = FSXB76X6V2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Neuland Food Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Neuland Food Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -592,7 +576,7 @@
 			};
 			name = Debug;
 		};
-		B7953B8628F227E10049E94A /* Release */ = {
+		B7D94B04297C8328003DF854 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -603,18 +587,14 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = FSXB76X6V2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Neuland Food Widget/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Neuland Food Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 0.1;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.neuland-ingolstadt.neuland-app.Neuland-Food-Widget";
@@ -638,7 +618,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "neuland.app" */ = {
+		504EC3161FED79650016851F /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
@@ -647,11 +627,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B7953B8728F227E10049E94A /* Build configuration list for PBXNativeTarget "Neuland Food WidgetExtension" */ = {
+		B7D94B02297C8328003DF854 /* Build configuration list for PBXNativeTarget "Neuland Food WidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B7953B8528F227E10049E94A /* Debug */,
-				B7953B8628F227E10049E94A /* Release */,
+				B7D94B03297C8328003DF854 /* Debug */,
+				B7D94B04297C8328003DF854 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

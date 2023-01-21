@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1400"
+   LastUpgradeVersion = "1420"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B7953B7228F227E00049E94A"
+               BlueprintIdentifier = "B7D94AEE297C8326003DF854"
                BuildableName = "Neuland Food WidgetExtension.appex"
                BlueprintName = "Neuland Food WidgetExtension"
-               ReferencedContainer = "container:App.xcodeproj">
+               ReferencedContainer = "container:neuland.app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "504EC3031FED79650016851F"
                BuildableName = "neuland.app.app"
                BlueprintName = "neuland.app"
-               ReferencedContainer = "container:App.xcodeproj">
+               ReferencedContainer = "container:neuland.app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -62,10 +62,10 @@
          BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B7953B7228F227E00049E94A"
+            BlueprintIdentifier = "B7D94AEE297C8326003DF854"
             BuildableName = "Neuland Food WidgetExtension.appex"
             BlueprintName = "Neuland Food WidgetExtension"
-            ReferencedContainer = "container:App.xcodeproj">
+            ReferencedContainer = "container:neuland.app.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
@@ -74,7 +74,7 @@
             BlueprintIdentifier = "504EC3031FED79650016851F"
             BuildableName = "neuland.app.app"
             BlueprintName = "neuland.app"
-            ReferencedContainer = "container:App.xcodeproj">
+            ReferencedContainer = "container:neuland.app.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -110,7 +110,7 @@
             BlueprintIdentifier = "504EC3031FED79650016851F"
             BuildableName = "neuland.app.app"
             BlueprintName = "neuland.app"
-            ReferencedContainer = "container:App.xcodeproj">
+            ReferencedContainer = "container:neuland.app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
