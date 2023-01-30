@@ -10,8 +10,8 @@ import AppContainer from '../components/page/AppContainer'
 import AppNavbar from '../components/page/AppNavbar'
 import AppTabbar from '../components/page/AppTabbar'
 
-import API from '../lib/backend/authenticated-api'
 import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
+import API from '../lib/backend/authenticated-api'
 
 import styles from '../styles/Personal.module.css'
 
@@ -38,6 +38,12 @@ export default function Personal () {
     load()
   }, [router])
 
+  /**
+   * Displays a row with the users information.
+   * @param {string} label Pretty row name
+   * @param {string} name Row name as returned by the backend
+   * @param {object} render Function returning the data to be displayed. If set, the `name` parameter will be ignored.
+   */
   function renderPersonalEntry (label, name, render) {
     return (
       <ListGroup.Item>

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import Form from 'react-bootstrap/Form'
 
-import { AttributionControl, FeatureGroup, LayerGroup, LayersControl, MapContainer, Polygon, CircleMarker, Popup, TileLayer } from 'react-leaflet'
+import { AttributionControl, CircleMarker, FeatureGroup, LayerGroup, LayersControl, MapContainer, Polygon, Popup, TileLayer } from 'react-leaflet'
 
 import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
 import { filterRooms, getNextValidDate } from '../lib/backend-utils/rooms-utils'
@@ -42,6 +42,10 @@ const DEFAULT_CENTER = [48.76677, 11.43322]
 
 const SPECIAL_COLORS = [...new Set(Object.values(SPECIAL_ROOMS).map(x => x.color))]
 
+/**
+ * Room map based on Leaflet.
+ * Implemented as a component because this is the best way to bypass SSR, which is incompatible with Leaflet.
+ */
 export default function RoomMap ({ highlight, roomData }) {
   const router = useRouter()
   const searchField = useRef()
@@ -49,6 +53,9 @@ export default function RoomMap ({ highlight, roomData }) {
   const [searchText, setSearchText] = useState(highlight ? highlight.toUpperCase() : '')
   const [availableRooms, setAvailableRooms] = useState(null)
 
+  /**
+   * Preprocessed room data for Leaflet.
+   */
   const allRooms = useMemo(() => {
     return roomData.features
       .map(feature => {
@@ -74,6 +81,9 @@ export default function RoomMap ({ highlight, roomData }) {
       .flat()
   }, [roomData])
 
+  /**
+   * Preprocessed and filtered room data for Leaflet.
+   */
   const [filteredRooms, center] = useMemo(() => {
     if (!searchText) {
       return [allRooms, DEFAULT_CENTER]
@@ -117,11 +127,21 @@ export default function RoomMap ({ highlight, roomData }) {
     load()
   }, [router, highlight])
 
+  /**
+   * Removes focus from the search.
+   */
   function unfocus (e) {
     e.preventDefault()
     searchField.current?.blur()
   }
 
+  /**
+   * Renders a room polygon.
+   * @param {object} entry GeoJSON feature
+   * @param {string} key Unique key that identifies the feature
+   * @param {boolean} onlyAvailable Display only rooms that are currently free
+   * @returns Leaflet feature object
+   */
   function renderRoom (entry, key, onlyAvailable) {
     const avail = availableRooms?.find(x => x.room === entry.properties.Raum)
     if ((avail && !onlyAvailable) || (!avail && onlyAvailable)) {
@@ -144,14 +164,17 @@ export default function RoomMap ({ highlight, roomData }) {
             {entry.properties.Raum}
           </strong>
           {`, ${entry.properties.Funktion}`} <br />
-          Gebäude {entry.properties.Gebaeude} <br />
-          Campus {entry.properties.Standort} <br />
           {avail && (
             <>
-              <strong>Frei</strong>
+              Frei
               {' '}von {formatFriendlyTime(avail.from)}
               {' '}bis {formatFriendlyTime(avail.until)}
               <br />
+            </>
+          )}
+          {!avail && availableRooms && (
+            <>
+              Belegt
             </>
           )}
           {special?.text}
@@ -167,6 +190,11 @@ export default function RoomMap ({ highlight, roomData }) {
     )
   }
 
+  /**
+   * Renders an entire floor.
+   * @param {string} floorName The floor name as specified in the data
+   * @returns Leaflet layer group
+   */
   function renderFloor (floorName) {
     const floorRooms = filteredRooms
       .filter(x => x.properties.Etage === floorName)
@@ -194,7 +222,7 @@ export default function RoomMap ({ highlight, roomData }) {
         />
         <Link href="/rooms/search">
           <a className={styles.linkToSearch}>
-            Erweiterte Suche
+            Stattdessen nach Zeitraum suchen
           </a>
         </Link>
       </Form>
@@ -212,7 +240,7 @@ export default function RoomMap ({ highlight, roomData }) {
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>-Mitwirkende'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxNativeZoom={19}
           maxZoom={21}
         />

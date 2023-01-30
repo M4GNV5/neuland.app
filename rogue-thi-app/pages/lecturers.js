@@ -13,13 +13,16 @@ import AppContainer from '../components/page/AppContainer'
 import AppNavbar from '../components/page/AppNavbar'
 import AppTabbar from '../components/page/AppTabbar'
 
-import API from '../lib/backend/authenticated-api'
 import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
+import API from '../lib/backend/authenticated-api'
 import { normalizeLecturers } from '../lib/backend-utils/lecturers-utils'
 
 import styles from '../styles/Lecturers.module.css'
 
-export default function RoomList () {
+/**
+ * Page containing the lecturer search and details.
+ */
+export default function Lecturers () {
   const router = useRouter()
   const [personalLecturers, setPersonalLecturers] = useState(null)
   const [allLecturers, setAllLecturers] = useState(null)

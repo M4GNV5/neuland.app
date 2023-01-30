@@ -31,6 +31,7 @@ import { forgetSession } from '../lib/backend/thi-session-handler'
 
 import BaseCard from '../components/cards/BaseCard'
 import CalendarCard from '../components/cards/CalendarCard'
+import EventsCard from '../components/cards/EventsCard'
 import FoodCard from '../components/cards/FoodCard'
 import InstallPrompt from '../components/cards/InstallPrompt'
 import MobilityCard from '../components/cards/MobilityCard'
@@ -82,6 +83,12 @@ const ALL_DASHBOARD_CARDS = [
     label: 'Termine',
     default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT, USER_EMPLOYEE, USER_GUEST],
     card: () => <CalendarCard key="calendar" />
+  },
+  {
+    key: 'events',
+    label: 'Veranstaltungen',
+    default: [PLATFORM_DESKTOP, PLATFORM_MOBILE, USER_STUDENT, USER_EMPLOYEE, USER_GUEST],
+    card: () => <EventsCard key="events" />
   },
   {
     key: 'rooms',
@@ -150,6 +157,9 @@ const ALL_DASHBOARD_CARDS = [
   }
 ]
 
+/**
+ * Main page.
+ */
 export default function Home () {
   const router = useRouter()
 
@@ -161,6 +171,28 @@ export default function Home () {
   const [showDebug, setShowDebug] = useState(false)
   const [theme, setTheme] = useContext(ThemeContext)
   const themeModalBody = useRef()
+
+  /**
+   * Get the default order of shown and hidden dashboard entries
+   */
+  function getDefaultDashboardOrder () {
+    const platform = window.matchMedia('(max-width: 768px)').matches
+      ? PLATFORM_MOBILE
+      : PLATFORM_DESKTOP
+
+    let personGroup = USER_STUDENT
+    if (localStorage.session === 'guest') {
+      personGroup = USER_GUEST
+    } else if (localStorage.isStudent === 'false') {
+      personGroup = USER_EMPLOYEE
+    }
+
+    const filter = x => x.default.includes(platform) && x.default.includes(personGroup)
+    return {
+      shown: ALL_DASHBOARD_CARDS.filter(filter),
+      hidden: ALL_DASHBOARD_CARDS.filter(x => !filter(x))
+    }
+  }
 
   useEffect(() => {
     async function load () {
@@ -181,20 +213,9 @@ export default function Home () {
         setShownDashboardEntries(entries)
         setHiddenDashboardEntries(hiddenEntries)
       } else {
-        const platform = window.matchMedia('(max-width: 768px)').matches
-          ? PLATFORM_MOBILE
-          : PLATFORM_DESKTOP
-
-        let personGroup = USER_STUDENT
-        if (localStorage.session === 'guest') {
-          personGroup = USER_GUEST
-        } else if (localStorage.isStudent === 'false') {
-          personGroup = USER_EMPLOYEE
-        }
-
-        const filter = x => x.default.includes(platform) && x.default.includes(personGroup)
-        setShownDashboardEntries(ALL_DASHBOARD_CARDS.filter(filter))
-        setHiddenDashboardEntries(ALL_DASHBOARD_CARDS.filter(x => !filter(x)))
+        const defaultEntries = getDefaultDashboardOrder()
+        setShownDashboardEntries(defaultEntries.shown)
+        setHiddenDashboardEntries(defaultEntries.hidden)
       }
 
       if (localStorage.unlockedThemes) {
@@ -207,6 +228,11 @@ export default function Home () {
     load()
   }, [])
 
+  /**
+   * Persists the dashboard settings.
+   * @param {object[]} entries Displayed entries
+   * @param {object[]} hiddenEntries Hidden entries
+   */
   function changeDashboardEntries (entries, hiddenEntries) {
     localStorage.personalizedDashboard = JSON.stringify(entries.map(x => x.key))
     localStorage.personalizedDashboardHidden = JSON.stringify(hiddenEntries.map(x => x.key))
@@ -214,6 +240,11 @@ export default function Home () {
     setHiddenDashboardEntries(hiddenEntries)
   }
 
+  /**
+   * Moves a dashboard entry to a new position.
+   * @param {number} oldIndex Old position
+   * @param {number} diff New position relative to the old position
+   */
   function moveDashboardEntry (oldIndex, diff) {
     const newIndex = oldIndex + diff
     if (newIndex < 0 || newIndex >= shownDashboardEntries.length) {
@@ -228,6 +259,10 @@ export default function Home () {
     changeDashboardEntries(entries, hiddenDashboardEntries)
   }
 
+  /**
+   * Hides a dashboard entry.
+   * @param {string} key Entry key
+   */
   function hideDashboardEntry (key) {
     const entries = shownDashboardEntries.slice(0)
     const hiddenEntries = hiddenDashboardEntries.slice(0)
@@ -241,6 +276,10 @@ export default function Home () {
     changeDashboardEntries(entries, hiddenEntries)
   }
 
+  /**
+   * Unhides a dashboard entry.
+   * @param {number} index Entry position
+   */
   function bringBackDashboardEntry (index) {
     const entries = shownDashboardEntries.slice(0)
     const hiddenEntries = hiddenDashboardEntries.slice(0)
@@ -251,6 +290,20 @@ export default function Home () {
     changeDashboardEntries(entries, hiddenEntries)
   }
 
+  /**
+   * Resets which dashboard entries are shown and their order to default
+   */
+  function resetOrder () {
+    const defaultEntries = getDefaultDashboardOrder()
+    setShownDashboardEntries(defaultEntries.shown)
+    setHiddenDashboardEntries(defaultEntries.hidden)
+    changeDashboardEntries(defaultEntries.shown, defaultEntries.hidden)
+  }
+
+  /**
+   * Changes the current theme.
+   * @param {string} theme Theme key
+   */
   function changeTheme (theme) {
     localStorage.theme = theme
     setTheme(theme)
@@ -350,7 +403,7 @@ export default function Home () {
 
               <Button
                 variant="secondary"
-                onClick={() => changeDashboardEntries(ALL_DASHBOARD_CARDS, [])}
+                onClick={() => resetOrder()}
               >
                 Reihenfolge zurücksetzen
               </Button>

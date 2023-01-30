@@ -3,6 +3,7 @@
  */
 
 import cheerio from 'cheerio'
+import crypto from 'crypto'
 import fetchCookie from 'fetch-cookie'
 import fs from 'fs/promises'
 import ical from 'ical-generator'
@@ -20,6 +21,11 @@ const EVENT_STORE = `${process.env.STORE}/cl-events.json`
 
 const cache = new AsyncMemoryCache({ ttl: CACHE_TTL })
 
+/**
+ * Parses a date like "Donnerstag, 15. Juni 2023, 10:00".
+ * @param {string} str
+ * @returns {Date}
+ */
 function parseLocalDateTime (str) {
   // use \p{Letter} because \w doesnt match umlauts
   // https://stackoverflow.com/a/70273329
@@ -34,14 +40,16 @@ function parseLocalDateTime (str) {
 }
 
 /**
- * Load persisted events from disk
+ * Load persisted events from disk.
+ * @returns {object[]}
  */
 async function loadEvents () {
   return JSON.parse(await fs.readFile(EVENT_STORE))
 }
 
 /**
- * Persist events to disk
+ * Persist events to disk.
+ * @param {object[]} events
  */
 async function saveEvents (events) {
   await fs.writeFile(EVENT_STORE, JSON.stringify(events))
@@ -49,6 +57,7 @@ async function saveEvents (events) {
 
 /**
  * Fetches a login XSRF token.
+ * @param {object} fetch Cookie-aware implementation of `fetch`
  */
 async function fetchToken (fetch) {
   const resp = await fetch(LOGIN_URL)
@@ -59,6 +68,9 @@ async function fetchToken (fetch) {
 
 /**
  * Logs into Moodle.
+ * @param {object} fetch Cookie-aware implementation of `fetch`
+ * @param {string} username
+ * @param {string} password
  */
 async function login (fetch, username, password) {
   const data = new URLSearchParams()
@@ -83,6 +95,8 @@ async function login (fetch, username, password) {
 
 /**
  * Fetch a list of event URLs.
+ * @param {object} fetch Cookie-aware implementation of `fetch`
+ * @returns {string[]}
  */
 async function getEventList (fetch) {
   const resp = await fetch(EVENT_LIST_URL)
@@ -96,6 +110,8 @@ async function getEventList (fetch) {
 
 /**
  * Fetches event details from an event URL.
+ * @param {object} fetch Cookie-aware implementation of `fetch`
+ * @param {string} url
  */
 async function getEventDetails (fetch, url) {
   // check URL just to make sure we're not fetching the wrong thing
@@ -116,6 +132,8 @@ async function getEventDetails (fetch, url) {
 
 /**
  * Fetches all event details from Moodle.
+ * @param {string} username
+ * @param {string} password
  */
 export async function getAllEventDetails (username, password) {
   // create a fetch method that keeps cookies
@@ -123,26 +141,32 @@ export async function getAllEventDetails (username, password) {
 
   await login(fetch, username, password)
 
-  let events = await loadEvents()
+  const remoteEvents = []
   for (const url of await getEventList(fetch)) {
     const details = await getEventDetails(fetch, url)
-
     // do not include location and description
     // since it may contain sensitive information
-    events = [
-      ...events.filter(event => event.origin_url !== url),
-      {
-        origin_url: url,
-        organizer: details.Verein,
-        title: details.Event,
-        begin: details.Start ? parseLocalDateTime(details.Start) : null,
-        end: details.Ende ? parseLocalDateTime(details.Ende) : null
-      }
-    ]
+    remoteEvents.push({
+      id: crypto.createHash('sha256').update(url).digest('hex'),
+      organizer: details.Verein,
+      title: details.Event,
+      begin: details.Start ? parseLocalDateTime(details.Start) : null,
+      end: details.Ende ? parseLocalDateTime(details.Ende) : null
+    })
   }
 
   const now = new Date()
+  let events = await loadEvents()
+
+  if (remoteEvents.length > 0) {
+    // remove all events which disappeared from the server
+    // this will not work if the first event gets removed
+    const remoteStart = remoteEvents.map(event => event.begin).reduce((a, b) => a < b ? a : b)
+    events = events.filter(a => a.begin < remoteStart).concat(remoteEvents)
+  }
+
   events = events.filter(event => new Date(event.begin) > now || new Date(event.end) > now)
+  events = events.sort((a, b) => a.end - b.end).sort((a, b) => a.begin - b.begin)
 
   // we need to persist the events because they disappear on monday
   // even if the event has not passed yet
@@ -151,12 +175,24 @@ export async function getAllEventDetails (username, password) {
   return events
 }
 
+/**
+ * Sends a HTTP response as JSON.
+ * @param {object} res Next.js response object
+ * @param {number} status HTTP status code
+ * @param {object} body Response body
+ */
 function sendJson (res, status, body) {
   res.statusCode = status
   res.setHeader('Content-Type', 'application/json')
   res.end(JSON.stringify(body))
 }
 
+/**
+ * Sends a HTTP response as iCal.
+ * @param {object} res Next.js response object
+ * @param {number} status HTTP status code
+ * @param {object} body Response body
+ */
 function sendCalendar (res, status, body) {
   res.statusCode = status
   res.setHeader('Content-Type', 'text/calendar')
@@ -180,7 +216,7 @@ export default async function handler (req, res) {
           .ttl(60 * 60 * 24)
         for (const event of plan) {
           cal.createEvent({
-            id: event.origin_url,
+            id: event.id,
             summary: event.title,
             description: `Veranstalter: ${event.organizer}`,
             start: event.begin,

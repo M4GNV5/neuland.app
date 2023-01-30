@@ -9,13 +9,16 @@ import AppContainer from '../components/page/AppContainer'
 import AppNavbar from '../components/page/AppNavbar'
 import AppTabbar from '../components/page/AppTabbar'
 
-import { loadGradeAverage, loadGrades } from '../lib/backend-utils/grades-utils'
 import { NoSessionError, UnavailableSessionError } from '../lib/backend/thi-session-handler'
+import { loadGradeAverage, loadGrades } from '../lib/backend-utils/grades-utils'
 
 import styles from '../styles/Grades.module.css'
 
 const formatNum = (new Intl.NumberFormat('de-DE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })).format
 
+/**
+ * Page showing the users grades.
+ */
 export default function Grades () {
   const router = useRouter()
   const [grades, setGrades] = useState(null)
@@ -49,6 +52,9 @@ export default function Grades () {
     load()
   }, [router])
 
+  /**
+   * Copies the formula for calculating the grade average to the users clipboard.
+   */
   async function copyGradeFormula () {
     if (!gradeAverage) {
       return
@@ -68,6 +74,9 @@ export default function Grades () {
     alert('Copied to Clipboard!')
   }
 
+  /**
+   * Downloads the users grades as a CSV file.
+   */
   function downloadGradeCSV () {
     alert('Not yet implemented :(')
   }

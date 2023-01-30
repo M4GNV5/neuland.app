@@ -7,22 +7,27 @@ const DEFAULT_BACKOFF = 60000
  * It uses exponential backoff to avoid calling the producer too often when it throws an exception.
  */
 export default class AsyncMemoryCache extends MemoryCache {
+  /**
+   * @param {number} ttl Seconds after which an entry should be discarded
+   * @param {number} backoff Seconds to wait before retrying a failed request
+   */
   constructor ({ ttl, backoff }) {
     super({ ttl })
     this.backoff = backoff || DEFAULT_BACKOFF
-    this.promises = new Map()
     this.timers = new Map()
   }
 
   /**
    * If there is a value cached under the given key, it is returned.
    * Otherwise producer is called exactly once to populate the cache.
+   *
+   * @param {object} producer Async function that returns the value to be cached
    */
   async get (key, producer) {
     // check if there is a cached result
-    const cachedValue = super.get(key)
-    if (cachedValue) {
-      return cachedValue
+    const promise = super.get(key)
+    if (promise) {
+      return await promise
     }
 
     // check if we need to back off
@@ -32,23 +37,17 @@ export default class AsyncMemoryCache extends MemoryCache {
       throw error
     }
 
-    // check if there is an ongoing promise
-    if (this.promises.has(key)) {
-      return await this.promises.get(key)
-    }
-
     try {
       // call the producer and remember the promise
       const promise = producer(key)
-      this.promises.set(key, promise)
+      super.set(key, promise)
 
       // wait until the promise resolves
       const result = await promise
 
       // the promise resolved successfully
-      // clear the backoff timer and remember the result
+      // clear the backoff timer
       this.timers.delete(key)
-      super.set(key, result)
 
       // return the result
       return result
@@ -62,9 +61,13 @@ export default class AsyncMemoryCache extends MemoryCache {
       })
 
       throw e
-    } finally {
-      // clean up the promise
-      this.promises.delete(key)
     }
+  }
+
+  /**
+   * Prevents writing to the underlying cache.
+   */
+  set (key, value) {
+    throw new Error('Values can not be set directly')
   }
 }

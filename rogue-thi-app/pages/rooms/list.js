@@ -13,14 +13,17 @@ import AppContainer from '../../components/page/AppContainer'
 import AppNavbar from '../../components/page/AppNavbar'
 import AppTabbar from '../../components/page/AppTabbar'
 
+import { NoSessionError, UnavailableSessionError } from '../../lib/backend/thi-session-handler'
 import { formatFriendlyTime, formatNearDate } from '../../lib/date-utils'
 import API from '../../lib/backend/authenticated-api'
-import { NoSessionError, UnavailableSessionError } from '../../lib/backend/thi-session-handler'
 
 import styles from '../../styles/RoomsList.module.css'
 
 const TUX_ROOMS = ['G308']
 
+/**
+ * Page containing a textual representation of the room openings.
+ */
 export default function RoomList () {
   const router = useRouter()
   const [freeRooms, setFreeRooms] = useState(null)

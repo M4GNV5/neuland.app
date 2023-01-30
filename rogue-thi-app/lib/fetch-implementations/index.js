@@ -5,6 +5,10 @@ import CapacitorFetchConnection from './capacitor-http'
  * Helper class that mimics a `fetch` response.
  */
 export class HttpResponse {
+  /**
+   * @param {number} status HTTP status code
+   * @param {object} data Error data
+   */
   constructor (status, data) {
     this.status = status
     this.data = data
@@ -19,6 +23,12 @@ export class HttpResponse {
   }
 }
 
+/**
+ * Returns a suitable fetch implementation.
+ * @param {string} mode Either `direct`, `capacitor` or `websocket-proxy`
+ * @param {object} options Connection parameters, only used by the proxy
+ * @returns An object with a `fetch` method.
+ */
 export default function obtainFetchImplementation (mode, options) {
   if (mode === 'direct') {
     return new BrowserFetchConnection(options)
