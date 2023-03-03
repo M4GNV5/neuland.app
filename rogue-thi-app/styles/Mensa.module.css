@@ -19,21 +19,3 @@
   text-align: right;
 }
 
-.qrCode {
-  width: 100% !important;
-  height: auto !important;
-}
-
-.checkin {
-  float: right;
-  margin-left: 5px;
-}
-
-.restaurantSelection {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.restaurantSelection label {
-  margin-right: 10px;
-}

@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Modal from 'react-bootstrap/Modal'
 import ReactPlaceholder from 'react-placeholder'
 
-import { faAllergies, faBowlRice, faExclamationTriangle, faFilter, faHandshake } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationTriangle, faFilter, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import AppBody from '../components/page/AppBody'
@@ -14,17 +13,19 @@ import AppContainer from '../components/page/AppContainer'
 import AppNavbar from '../components/page/AppNavbar'
 import AppTabbar from '../components/page/AppTabbar'
 
+import FilterFoodModal from '../components/modal/FilterFoodModal'
+import { ShowFoodFilterModal } from './_app'
 import { formatNearDate } from '../lib/date-utils'
 import { loadFoodEntries } from '../lib/backend-utils/food-utils'
-
-import styles from '../styles/Mensa.module.css'
+import { useFoodFilter } from '../lib/hooks/food-filter'
 
 import allergenMap from '../data/allergens.json'
 import flagMap from '../data/mensa-flags.json'
+import styles from '../styles/Mensa.module.css'
 
 const CURRENCY_LOCALE = 'de'
 const COLOR_WARN = '#bb0000'
-const COLOR_GOOD = '#00FF00'
+const COLOR_GOOD = '#00bb00'
 const FALLBACK_ALLERGEN = 'Unbekannt (Das ist schlecht.)'
 
 // delete comments
@@ -36,15 +37,15 @@ Object.keys(allergenMap)
  * Page showing the current Mensa / Reimanns meal plan.
  */
 export default function Mensa () {
+  const {
+    selectedRestaurants,
+    preferencesSelection,
+    allergenSelection,
+    isStudent
+  } = useFoodFilter()
+  const [, setShowFoodFilterModal] = useContext(ShowFoodFilterModal)
   const [foodEntries, setFoodEntries] = useState(null)
-  const [selectedRestaurants, setSelectedRestaurants] = useState(['mensa'])
   const [showMealDetails, setShowMealDetails] = useState(null)
-  const [preferencesSelection, setPreferencesSelection] = useState({})
-  const [allergenSelection, setAllergenSelection] = useState({})
-  const [showFilterSelection, setShowFilterSelection] = useState(false)
-  const [showAllergenSelection, setShowAllergenSelection] = useState(false)
-  const [showPreferencesSelection, setShowPreferencesSelection] = useState(false)
-  const [isStudent, setIsStudent] = useState(true)
 
   useEffect(() => {
     async function load () {
@@ -57,53 +58,6 @@ export default function Mensa () {
     }
     load()
   }, [selectedRestaurants])
-
-  useEffect(() => {
-    if (localStorage.selectedAllergens) {
-      setAllergenSelection(JSON.parse(localStorage.selectedAllergens))
-    }
-    if (localStorage.preferencesSelection) {
-      setPreferencesSelection(JSON.parse(localStorage.preferencesSelection))
-    }
-    if (localStorage.selectedRestaurants) {
-      setSelectedRestaurants(JSON.parse(localStorage.selectedRestaurants))
-    }
-    if (localStorage.isStudent === 'false') {
-      setIsStudent(false)
-    }
-  }, [])
-
-  /**
-   * Enables or disables a restaurant.
-   * @param {string} name Restaurant name (either `mensa` or `reimanns`)
-   */
-  function toggleSelectedRestaurant (name) {
-    const checked = selectedRestaurants.includes(name)
-    const newSelection = selectedRestaurants.filter(x => x !== name)
-    if (!checked) {
-      newSelection.push(name)
-    }
-
-    setSelectedRestaurants(newSelection)
-    localStorage.selectedRestaurants = JSON.stringify(newSelection)
-  }
-
-  function closeFilter () {
-    setShowFilterSelection(false)
-  }
-
-  function savePreferencesSelection () {
-    localStorage.preferencesSelection = JSON.stringify(preferencesSelection)
-    setShowPreferencesSelection(false)
-  }
-
-  /**
-   * Persists the allergen selection to localStorage.
-   */
-  function saveAllergenSelection () {
-    localStorage.selectedAllergens = JSON.stringify(allergenSelection)
-    setShowAllergenSelection(false)
-  }
 
   /**
    * Checks whether the user should be allergens.
@@ -163,7 +117,7 @@ export default function Mensa () {
   return (
       <AppContainer>
         <AppNavbar title="Essen" showBack={'desktop-only'}>
-          <AppNavbar.Button onClick={() => setShowFilterSelection(true)}>
+          <AppNavbar.Button onClick={() => setShowFoodFilterModal(true)}>
             <FontAwesomeIcon title="Filter" icon={faFilter} fixedWidth />
           </AppNavbar.Button>
         </AppNavbar>
@@ -194,16 +148,16 @@ export default function Mensa () {
                               {!meal.allergens && 'Unbekannte Zutaten / Allergene'}
                               {containsSelectedAllergen(meal.allergens) && (
                                   <span>
-                                        <FontAwesomeIcon title="Allergiewarnung" icon={faExclamationTriangle} color={COLOR_WARN} />
-                                        {' '}
+                                    <FontAwesomeIcon title="Allergiewarnung" icon={faExclamationTriangle} color={COLOR_WARN} />
+                                    {' '}
                                   </span>
                               )}
-                                {containsSelectedPreference(meal.flags) && (
-                                    <span>
-                                        <FontAwesomeIcon title="Bevorzugtes Essen" icon={faHandshake} color={COLOR_GOOD} />
-                                        {' '}
-                                    </span>
-                                )}
+                              {!containsSelectedAllergen(meal.allergens) && containsSelectedPreference(meal.flags) && (
+                                  <span>
+                                      <FontAwesomeIcon title="Bevorzugtes Essen" icon={faThumbsUp} color={COLOR_GOOD} />
+                                      {' '}
+                                  </span>
+                              )}
                               {meal.flags && meal.flags.map((flag, idx) => (
                                   <span key={idx}>
                                     {idx > 0 && ', '}
@@ -256,9 +210,9 @@ export default function Mensa () {
                 {showMealDetails?.flags?.map(flag => (
                     <li key={flag} style={{ color: containsSelectedPreference([flag]) && COLOR_GOOD }}>
                       {containsSelectedPreference([flag]) && (
-                          <span>
-                            <FontAwesomeIcon icon={faHandshake} color={COLOR_GOOD} />{' '}
-                          </span>
+                        <span>
+                          <FontAwesomeIcon icon={faThumbsUp} color={COLOR_GOOD} />{' '}
+                        </span>
                       )}
                       {' '}
                       <strong>{flag}</strong>
@@ -353,136 +307,7 @@ export default function Mensa () {
             </Modal.Footer>
           </Modal>
 
-          <Modal show={showFilterSelection} onHide={() => setShowFilterSelection(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Filter</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              <Modal.Header>
-                Restaurant
-              </Modal.Header>
-
-              <Form>
-                <Modal.Body>
-                  <Form.Check
-                      id={'restaurant-checkbox-mensa'}
-                      label={<span><strong>Mensa</strong></span>}
-                      checked={selectedRestaurants.includes('mensa')}
-                      onChange={() => toggleSelectedRestaurant('mensa')}
-                  />
-                  <Form.Check
-                      id={'restaurant-checkbox-reimanns'}
-                      label={<span><strong>Reimanns</strong></span>}
-                      checked={selectedRestaurants.includes('reimanns')}
-                      onChange={() => toggleSelectedRestaurant('reimanns')}
-                  />
-                </Modal.Body>
-              </Form>
-
-              <Modal.Header>
-                  <div>
-                    Allergene
-                  </div>
-                  <div>
-                    <Button variant={'outline-primary'} onClick={() => {
-                      setShowAllergenSelection(true)
-                      setShowFilterSelection(false)
-                    }}>
-                      <FontAwesomeIcon title="Allergene" icon={faAllergies} fixedWidth />
-                    </Button>
-                  </div>
-              </Modal.Header>
-
-              <Modal.Body>
-                <span>
-                  {Object.entries(allergenSelection).filter(x => x[1]).map(x => allergenMap[x[0]]).join(', ')}
-                </span>
-              </Modal.Body>
-
-              <Modal.Header>
-                <div>
-                  Essenspräferenzen
-                </div>
-                <div>
-                  <Button variant={'outline-primary'} onClick={() => {
-                    setShowPreferencesSelection(true)
-                    setShowFilterSelection(false)
-                  }}>
-                    <FontAwesomeIcon title='Preferences' icon={faBowlRice} fixedWidth />
-                  </Button>
-                </div>
-              </Modal.Header>
-
-              <Modal.Body>
-                <span>
-                  {Object.entries(preferencesSelection).filter(x => x[1]).map(x => flagMap[x[0]]).join(', ')}
-                </span>
-              </Modal.Body>
-
-            </Modal.Body>
-
-            <Modal.Footer>
-              <p>
-                Wähle deine Präferenzen aus. Deine Angaben werden nur lokal auf deinem Gerät gespeichert und nicht übermittelt. (Auch nicht an die THI.)
-              </p>
-              <Button variant="primary" onClick={() => closeFilter()}>OK</Button>
-            </Modal.Footer>
-          </Modal>
-
-          <Modal show={showAllergenSelection} onHide={() => setShowAllergenSelection(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Allergene auswählen</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              <Form>
-                {Object.entries(allergenMap).map(([key, value]) => (
-                    <Form.Check
-                        key={key}
-                        id={'allergen-checkbox-' + key}
-                        label={<span><strong>{key}</strong>{' – '}{value}</span>}
-                        checked={allergenSelection[key] || false}
-                        onChange={e => setAllergenSelection({ ...allergenSelection, [key]: e.target.checked })}
-                    />
-                ))}
-              </Form>
-            </Modal.Body>
-
-            <Modal.Footer>
-              <Button variant="primary" onClick={() => {
-                saveAllergenSelection()
-                setShowFilterSelection(true)
-              }}>OK</Button>
-            </Modal.Footer>
-          </Modal>
-
-          <Modal show={showPreferencesSelection} onHide={() => setShowPreferencesSelection(false)}>
-            <Modal.Header closeButton>
-              <Modal.Title>Präferenzen auswählen</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              <Form>
-                {Object.entries(flagMap).map(([key, value]) => (
-                    <Form.Check
-                        key={key}
-                        id={'preferences-checkbox-' + key}
-                        label={<span>{value}</span>}
-                        checked={preferencesSelection[key] || false}
-                        onChange={e => setPreferencesSelection({ ...preferencesSelection, [key]: e.target.checked })}
-                    />
-                ))}
-              </Form>
-            </Modal.Body>
-
-            <Modal.Footer>
-              <Button variant="primary" onClick={() => {
-                savePreferencesSelection()
-                setShowFilterSelection(true)
-              }}>OK</Button>
-            </Modal.Footer>
-          </Modal>
+          <FilterFoodModal />
         </AppBody>
 
         <AppTabbar />
