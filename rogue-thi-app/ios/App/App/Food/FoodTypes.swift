@@ -45,8 +45,8 @@ struct FoodElement: Identifiable, Codable {
         case meals = "meals"
     }
     
-    static let placeholder = [FoodElement(timestamp: "14042022", meals: [Meal(name: "Essen 1", prices: Prices(student: 2.00, employee: 3.00, guest: 4.00), allergens: ["Ei", "4"], flags: ["G"]), Meal(name: "Essen 2", prices: Prices(student: 2.50, employee: 4.00, guest: 6.00), allergens: ["Wz", "7"], flags: ["CO2"]), Meal(name: "Essen 3", prices: Prices(student: 1.50, employee: 3.00, guest: 4.50), allergens: ["Ei", "13"], flags: ["G"])]), FoodElement(timestamp: "15042022", meals: [Meal(name: "Essen 1", prices: Prices(student: 2.00, employee: 3.00, guest: 4.00), allergens: ["Ei", "4"], flags: ["G"]), Meal(name: "Essen 2", prices: Prices(student: 2.50, employee: 4.00, guest: 6.00), allergens: ["Wz", "7"], flags: ["CO2"])])]
-}
+    static let placeholder = [FoodElement(timestamp: "14042022", meals: [Meal(name: "Daten konnten nicht geladen werden", prices: Prices(student: 0.00, employee: 0.00, guest: 0.00), allergens: nil, flags: nil), Meal(name: "Bitte überprüfe deine Internetverbindung", prices: Prices(student: 0.00, employee: 0.00, guest: 0.00), allergens: nil, flags: nil)])]
+    }
 
 
 // MARK: - Meal

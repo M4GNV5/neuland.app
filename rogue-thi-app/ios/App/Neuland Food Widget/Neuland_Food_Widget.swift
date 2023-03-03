@@ -67,12 +67,15 @@ struct Neuland_Food_WidgetEntryView : View {
                     Text(index.name).font(.footnote).lineLimit(2)
                     Spacer()
                     Text("\(index.prices.student ?? 0.0, specifier: "%.2f")€").font(.footnote).foregroundColor(.secondary)
-                }.padding(.top, 0.2)
+                }.padding(.top, 0.5)
                 
             }.padding(.horizontal)
+                
             Spacer()
         }.overlay( Group{ if displayRestaurantError{
-            Text("Der Speiseplan ist leer.").foregroundColor(.secondary).font(.footnote)}})
+            Text("Der Speiseplan ist leer.").foregroundColor(.secondary).font(.footnote)}
+           })
+        .frame(minHeight: 0, maxHeight: .infinity, alignment: .top)
     }
     
 }
