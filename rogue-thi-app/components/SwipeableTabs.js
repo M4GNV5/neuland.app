@@ -17,7 +17,7 @@ export default function SwipeableTabs ({ className, children }) {
       <Nav variant="pills" activeKey={page.toString()} onSelect={key => setPage(parseInt(key))}>
         {children.map((child, idx) =>
           <Nav.Item key={idx}>
-            <Nav.Link eventKey={idx.toString()}>
+            <Nav.Link eventKey={idx.toString()} >
               {child.props.title}
             </Nav.Link>
           </Nav.Item>
@@ -47,6 +47,6 @@ export function SwipeableTab ({ className, children }) {
 }
 SwipeableTab.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   children: PropTypes.any
 }

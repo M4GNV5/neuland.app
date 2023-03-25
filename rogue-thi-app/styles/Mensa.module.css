@@ -1,21 +1,59 @@
-.dateBoundary {
-  margin-top: 20px;
+/* tab bar */
+.tab :global(.nav) {
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 
-.item {
-  display: flex;
-}
-
-.left {
+/* tab bar items */
+.tab :global(.nav .nav-item) {
   flex: 1;
+  text-align: center;
+}
+.tab :global(.nav .nav-link) {
+  padding: 5px 10px;
 }
 
-.room {
-  color: gray;
+.kindHeader {
+  margin-top: 10px;
 }
 
-.right {
+.details {
+  flex: 1;
   color: gray;
   text-align: right;
+  align-self: flex-end;
 }
 
+.restaurant {
+  font-size: .8rem;
+  color: gray;
+}
+
+.indicator {
+  font-size: .8rem;
+  color: gray;
+}
+
+/* week selector */
+.weekSelector {
+  display: flex;
+  align-items: center;
+}
+
+.weekText {
+  flex: 1;
+  text-align: center;
+}
+
+.noMeals {
+  color: var(--gray);
+}
+
+.noMeals.active {
+  background-color: var(--secondary) !important;
+}
+
+.noMealInfo {
+  margin-top: 75px;
+  text-align: center;
+}

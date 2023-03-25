@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 
 import PropTypes from 'prop-types'
 import TheMatrixAnimation from './../components/TheMatrixAnimation'
+import { useFoodFilter } from '../lib/hooks/food-filter'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -13,9 +14,10 @@ import themes from '../data/themes.json'
 import '../styles/globals.css'
 
 export const ThemeContext = createContext('default')
-export const ShowPersonalizeModal = createContext(false)
-export const ShowFoodFilterModal = createContext(false)
+export const FoodFilterContext = createContext(false)
+export const ShowDashboardModal = createContext(false)
 export const ShowPersonalDataModal = createContext(false)
+export const ShowThemeModal = createContext(false)
 
 config.autoAddCss = false
 
@@ -23,8 +25,9 @@ function MyApp ({ Component, pageProps }) {
   const router = useRouter()
   const [theme, setTheme] = useState('default')
   const [showThemeModal, setShowThemeModal] = useState(false)
-  const [showFoodFilterModal, setShowFoodFilterModal] = useState(false)
+  const [showDashboardModal, setShowDashboardModal] = useState(false)
   const [showPersonalDataModal, setShowPersonalDataModal] = useState(false)
+  const foodFilter = useFoodFilter()
 
   useEffect(() => {
     // migrate legacy cookie theme setting to localStorage
@@ -50,9 +53,10 @@ function MyApp ({ Component, pageProps }) {
 
   return (
     <ThemeContext.Provider value={[computedTheme, setTheme]}>
-      <ShowPersonalizeModal.Provider value={[showThemeModal, setShowThemeModal]}>
-        <ShowFoodFilterModal.Provider value={[showFoodFilterModal, setShowFoodFilterModal]}>
+      <FoodFilterContext.Provider value={foodFilter}>
+        <ShowDashboardModal.Provider value={[showDashboardModal, setShowDashboardModal]}>
           <ShowPersonalDataModal.Provider value={[showPersonalDataModal, setShowPersonalDataModal]}>
+            <ShowThemeModal.Provider value={[showThemeModal, setShowThemeModal]}>
             <Head>
               <meta charSet="utf-8"/>
               <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
@@ -132,9 +136,10 @@ function MyApp ({ Component, pageProps }) {
             )}
 
             <Component {...pageProps} />
+            </ShowThemeModal.Provider>
           </ShowPersonalDataModal.Provider>
-        </ShowFoodFilterModal.Provider>
-      </ShowPersonalizeModal.Provider>
+        </ShowDashboardModal.Provider>
+      </FoodFilterContext.Provider>
     </ThemeContext.Provider>
   )
 }

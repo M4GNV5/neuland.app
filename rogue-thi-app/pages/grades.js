@@ -60,10 +60,9 @@ export default function Grades () {
       return
     }
 
-    const weight = gradeAverage.entries
-      .filter(curr => curr.grade)
-      .reduce((acc, curr) => acc + (curr.weight || 1), 0)
-    const inner = gradeAverage.entries
+    const relevantEntries = gradeAverage.entries.filter(curr => curr.grade && curr.grade < 5)
+    const weight = relevantEntries.reduce((acc, curr) => acc + (curr.weight || 1), 0)
+    const inner = relevantEntries
       .map(entry => entry.weight && entry.weight !== 1
         ? `${entry.weight} * ${entry.grade}`
         : entry.grade.toString()
@@ -102,12 +101,15 @@ export default function Grades () {
                 Notenschnitt
               </h4>
 
-              <ListGroup.Item>
-                <span className={styles.gradeAverage}>{formatNum(gradeAverage.result)}</span>
-                {gradeAverage.missingWeight / gradeAverage.entries.length > 0.2 && (
-                  <span className={styles.details}>
-                    Achtung: {gradeAverage.missingWeight} von {gradeAverage.entries.length} Noten haben
-                    eine unbekannte Gewichtung. Der angezeigte Schnitt ist eventuell nicht korrekt.
+              <ListGroup.Item className={styles.gradeAverageContainer}>
+                <span className={styles.gradeAverage}>
+                  {gradeAverage.resultMin !== gradeAverage.resultMax && '~'}
+                  {formatNum(gradeAverage.result)}
+                </span>
+                {gradeAverage.resultMin !== gradeAverage.resultMax && (
+                  <span className={styles.gradeAverageDisclaimer}>
+                    Der genaue Notenschnitt kann nicht ermittelt werden und liegt zwischen
+                    {' '}{formatNum(gradeAverage.resultMin)} und {formatNum(gradeAverage.resultMax)}
                   </span>
                 )}
               </ListGroup.Item>

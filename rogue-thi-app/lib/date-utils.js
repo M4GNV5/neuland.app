@@ -1,8 +1,8 @@
 
 const WORD_TODAY = 'Heute'
 const WORD_TOMORROW = 'Morgen'
-const WORD_THIS_WEEK = 'Diese Woche'
-const WORD_NEXT_WEEK = 'Nächste Woche'
+export const WORD_THIS_WEEK = 'Diese Woche'
+export const WORD_NEXT_WEEK = 'Nächste Woche'
 
 export const DATE_LOCALE = 'de-DE'
 
@@ -107,6 +107,22 @@ export function formatNearDate (datetime) {
   } else {
     return datetime.toLocaleString(DATE_LOCALE, { weekday: 'long', day: 'numeric', month: 'numeric' })
   }
+}
+
+/**
+ * This Function takes a datetame and returns a span which is Formated, that on the first line is the Weekday and on the second line you get the date
+ * @param datetime
+ * @returns {JSX.Element}
+ */
+export function buildLinedWeekdaySpan (datetime) {
+  if (typeof datetime === 'string') {
+    datetime = new Date(datetime)
+  }
+
+  const weekday = datetime.toLocaleString(DATE_LOCALE, { weekday: 'short' })
+  const date = datetime.toLocaleString(DATE_LOCALE, { day: 'numeric', month: 'numeric' })
+
+  return <span>{weekday}<br />{date}</span>
 }
 
 /**
@@ -257,4 +273,25 @@ export function getFriendlyWeek (date) {
     return monday.toLocaleString(DATE_LOCALE, { day: 'numeric', month: 'numeric' }) +
       ' – ' + sunday.toLocaleString(DATE_LOCALE, { day: 'numeric', month: 'numeric' })
   }
+}
+
+/**
+ * Returns true if the given date is a weekend day
+ * @param {Date} date
+ * @returns {boolean}
+ */
+export function isWeekend (date) {
+  return date.getDay() === 0 || date.getDay() === 6
+}
+
+/**
+ * Returns the given day on working days or the next working day if the given date is a weekend day
+ * @param {Date} date
+ * @returns {Date}
+ */
+export function getAdjustedDay (date) {
+  if (isWeekend(date)) {
+    return getMonday(addWeek(date, 1))
+  }
+  return date
 }

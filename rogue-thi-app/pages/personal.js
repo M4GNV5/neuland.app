@@ -9,12 +9,14 @@ import AppBody from '../components/page/AppBody'
 import AppContainer from '../components/page/AppContainer'
 import AppNavbar from '../components/page/AppNavbar'
 import AppTabbar from '../components/page/AppTabbar'
+import DashboardModal from '../components/modal/DashboardModal'
 import FilterFoodModal from '../components/modal/FilterFoodModal'
 import PersonalDataModal from '../components/modal/PersonalDataModal'
-import PersonalizeModal from '../components/modal/PersonalizeModal'
+import ThemeModal from '../components/modal/ThemeModal'
 
 import {
   faArrowRightFromBracket,
+  faArrowRightToBracket,
   faBug,
   faChevronRight,
   faExternalLink,
@@ -23,13 +25,16 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { FoodFilterContext, ShowDashboardModal, ShowPersonalDataModal, ShowThemeModal, ThemeContext } from './_app'
 import { NoSessionError, UnavailableSessionError, forgetSession } from '../lib/backend/thi-session-handler'
-import { ShowFoodFilterModal, ShowPersonalDataModal, ShowPersonalizeModal, ThemeContext } from './_app'
+import { USER_EMPLOYEE, USER_GUEST, USER_STUDENT, useUserKind } from '../lib/hooks/user-kind'
 import { calculateECTS, loadGradeAverage, loadGrades } from '../lib/backend-utils/grades-utils'
 import API from '../lib/backend/authenticated-api'
 
 import styles from '../styles/Personal.module.css'
 import themes from '../data/themes.json'
+
+const PRIVACY_URL = process.env.NEXT_PUBLIC_PRIVACY_URL
 
 export default function Personal () {
   const [userdata, setUserdata] = useState(null)
@@ -38,28 +43,47 @@ export default function Personal () {
   const [grades, setGrades] = useState(null)
   const [missingGrades, setMissingGrades] = useState(null)
   const [showDebug, setShowDebug] = useState(false)
-  const [isGuest, setIsGuest] = useState(true)
-  const [isStudent, setIsStudent] = useState(true)
-  const [, setShowThemeModal] = useContext(ShowPersonalizeModal)
-  const [, setShowFoodFilterModal] = useContext(ShowFoodFilterModal)
+  const [, setShowDashboardModal] = useContext(ShowDashboardModal)
+  const { setShowFoodFilterModal } = useContext(FoodFilterContext)
   const [, setShowPersonalDataModal] = useContext(ShowPersonalDataModal)
+  const [, setShowThemeModal] = useContext(ShowThemeModal)
   const theme = useContext(ThemeContext)
   const router = useRouter()
+  const userKind = useUserKind()
+
+  const CopyableField = ({ label, value }) => {
+    // Only the value is clickable to copy it to the clipboard.
+
+    const handleCopy = async () => {
+      await navigator.clipboard.writeText(value)
+      alert(`${label} in die Zwischenablage kopiert.`)
+    }
+
+    return (
+      <span onClick={e => {
+        if (!value) {
+          e.preventDefault()
+          return
+        }
+        e.stopPropagation()
+      }}>
+        {label}:{' '}
+        {value
+          ? (
+          <>
+            <span style={{ cursor: 'pointer' }} onClick={handleCopy}>
+              {value}
+            </span>
+          </>
+            )
+          : null}
+      </span>
+    )
+  }
 
   useEffect(() => {
     async function load () {
       try {
-        if (localStorage.debugUnlocked) {
-          setShowDebug(true)
-        }
-
-        setIsGuest(localStorage.session === 'guest')
-
-        if (localStorage.isStudent === 'false') {
-          setIsStudent(false)
-          return
-        }
-
         const response = await API.getPersonalData()
         const data = response.persdata
         data.pcounter = response.pcounter
@@ -79,21 +103,28 @@ export default function Personal () {
           router.replace('/login?redirect=personal')
         } else {
           console.error(e)
-          alert(e)
+          // students who are not enrolled (anymore) get 'Service not available (-112)'
+          // remove the popup temporarily until we figure out a better way to handle this
+          // alert(e)
         }
       }
     }
 
-    load()
-  }, [router])
+    if (localStorage.debugUnlocked) {
+      setShowDebug(true)
+    }
+    if (userKind === USER_STUDENT) {
+      load()
+    }
+  }, [router, userKind])
 
   return (<AppContainer>
     <AppNavbar title="Profil"/>
 
     <AppBody>
-      <ReactPlaceholder type="text" rows={20} ready={userdata || !isStudent}>
+      <ReactPlaceholder type="text" rows={20} ready={userdata || userKind !== USER_STUDENT}>
 
-        {isStudent &&
+        {userKind === USER_STUDENT &&
           <ListGroup>
             <ListGroup.Item action onClick={() => setShowPersonalDataModal(true)}>
               <div className={styles.name_interaction_icon}>
@@ -107,21 +138,29 @@ export default function Personal () {
               <span className={userdata ? styles.personal_value : styles.personal_value_loading}>
               {userdata && userdata.stgru + '. Semester'}<br/>
               </span>
-              {userdata && 'Mat.-Nr: ' + userdata.mtknr}<br/>
-              {userdata && 'Bib.-Nr: ' + userdata.bibnr}
+              {userdata && (
+                <>
+                  <CopyableField label="Mat.-Nr" value={userdata.mtknr} /> <br />
+                  <CopyableField label="Bib.-Nr" value={userdata.bibnr} />
+                </>
+              )}
+
             </ListGroup.Item>
 
-            <ListGroup.Item action onClick={() => window.open('/grades', '_self')}>
+            <ListGroup.Item action onClick={() => router.push('/grades')}>
               <div className={styles.interaction_icon}>
                 <span className="text-muted">
-                  {grades && missingGrades && grades.length + '/' + (grades.length + missingGrades.length)}{' '}Noten{' '}
+                  {grades && missingGrades && grades.length + '/' + (grades.length + missingGrades.length)}
+                  {' Noten '}
                   <FontAwesomeIcon icon={faChevronRight}/>
                 </span>
               </div>
               <span className="text-muted">
                 {ects !== null && ects + ' ECTS'}
-                {average && ' · '}
-                {average && '∅ ' + average}
+                {!isNaN(average?.result) && ' · '}
+                {!isNaN(average?.result) && '∅ ' + average.result.toFixed(2).toString().replace('.', ',')}
+                {average?.missingWeight === 1 && ' (' + average.missingWeight + ' Gewichtung fehlt)'}
+                {average?.missingWeight > 1 && ' (' + average.missingWeight + ' Gewichtungen fehlen)'}
               </span>
             </ListGroup.Item>
           </ListGroup>
@@ -139,9 +178,18 @@ export default function Personal () {
               <FontAwesomeIcon icon={faChevronRight}/>
             </span>
               </div>
-              Personalisierung
+              Theme
             </ListGroup.Item>
           ))}
+
+          <ListGroup.Item action onClick={() => setShowDashboardModal(true)}>
+            <div className={styles.interaction_icon}>
+              <span className="text-muted">
+                <FontAwesomeIcon icon={faChevronRight}/>
+              </span>
+            </div>
+            Dashboard
+          </ListGroup.Item>
 
           <ListGroup.Item action onClick={() => setShowFoodFilterModal(true)}>
             <div className={styles.interaction_icon}>
@@ -174,7 +222,7 @@ export default function Personal () {
             E-Mail
           </ListGroup.Item>
 
-          {(!isStudent || isGuest) &&
+          {userKind === USER_EMPLOYEE &&
             <ListGroup.Item action onClick={() => window.open('https://mythi.de', '_blank')}>
               <FontAwesomeIcon icon={faExternalLink} className={styles.interaction_icon}/>
               MyTHI
@@ -187,18 +235,18 @@ export default function Personal () {
         <ListGroup>
 
           {showDebug && (
-            <ListGroup.Item action onClick={() => window.open('/debug', '_self')}>
+            <ListGroup.Item action onClick={() => router.push('/debug')}>
               <FontAwesomeIcon icon={faBug} className={styles.interaction_icon}/>
               API Spielwiese
             </ListGroup.Item>
           )}
 
-          <ListGroup.Item action onClick={() => window.open('/imprint', '_self')}>
+          <ListGroup.Item action onClick={() => window.open(PRIVACY_URL, '_blank')}>
             <FontAwesomeIcon icon={faShield} className={styles.interaction_icon}/>
             Datenschutzerklärung
           </ListGroup.Item>
 
-          <ListGroup.Item action onClick={() => window.open('/imprint', '_self')}>
+          <ListGroup.Item action onClick={() => router.push('/imprint')}>
             <FontAwesomeIcon icon={faGavel} className={styles.interaction_icon}/>
             Impressum
           </ListGroup.Item>
@@ -208,14 +256,28 @@ export default function Personal () {
         <br/>
 
         <div className={styles.logout_button}>
-          <Button variant={'danger'} onClick={() => forgetSession(router)}>
-            Logout <FontAwesomeIcon icon={faArrowRightFromBracket}/>
-          </Button>
+          {userKind === USER_GUEST && (
+            <Button
+              variant={'success'}
+              onClick={() => forgetSession(router)}>
+              {'Login '}
+              <FontAwesomeIcon icon={faArrowRightToBracket} />
+            </Button>
+          )}
+          {userKind !== USER_GUEST && (
+            <Button
+              variant={'danger'}
+              onClick={() => forgetSession(router)}>
+              {'Logout '}
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+            </Button>
+          )}
         </div>
 
         <PersonalDataModal userdata={userdata}/>
-        <PersonalizeModal/>
+        <DashboardModal/>
         <FilterFoodModal/>
+        <ThemeModal/>
       </ReactPlaceholder>
       <AppTabbar/>
     </AppBody>
