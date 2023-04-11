@@ -38,14 +38,14 @@ struct FoodElement: Identifiable, Codable {
     
     var id = UUID()
     let timestamp: String
-    let meals: [Meal]
+    var meals: [Meal]
     
     enum CodingKeys: String, CodingKey {
         case timestamp = "timestamp"
         case meals = "meals"
     }
     
-    static let placeholder = [FoodElement(timestamp: "14042022", meals: [Meal(name: "Daten konnten nicht geladen werden", prices: Prices(student: 0.00, employee: 0.00, guest: 0.00), allergens: nil, flags: nil), Meal(name: "Bitte überprüfe deine Internetverbindung", prices: Prices(student: 0.00, employee: 0.00, guest: 0.00), allergens: nil, flags: nil)])]
+    static let placeholder = [FoodElement(timestamp: "14042022", meals: [Meal(name: "Daten konnten nicht geladen werden", category: "Essen", prices: Prices(student: 0.00, employee: 0.00, guest: 0.00), allergens: nil, flags: nil), Meal(name: "Bitte überprüfe deine Internetverbindung", category: "Essen", prices: Prices(student: 0.00, employee: 0.00, guest: 0.00), allergens: nil, flags: nil)])]
     }
 
 
@@ -53,12 +53,14 @@ struct FoodElement: Identifiable, Codable {
 struct Meal: Identifiable, Codable {
     var id = UUID()
     let name: String
+    let category: String
     let prices: Prices
     let allergens: [String]?
     let flags: [String]?
     
     enum CodingKeys: String, CodingKey {
         case name = "name"
+        case category = "category"
         case prices = "prices"
         case allergens = "allergens"
         case flags = "flags"

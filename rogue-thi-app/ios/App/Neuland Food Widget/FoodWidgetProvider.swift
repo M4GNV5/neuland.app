@@ -26,6 +26,8 @@ class FoodWidgetProvider {
                 do{
                     result = try JSONDecoder().decode([FoodElement].self, from: data)
                     result = result?.filter({ Helper.stringToDate(dateString: $0.timestamp) >= Date().stripTime() })
+                    result = result?.map({ FoodElement(timestamp: $0.timestamp, meals: $0.meals.filter({ $0.category == "Essen" })) })
+
                 }catch{
                     print(error)
                 }
