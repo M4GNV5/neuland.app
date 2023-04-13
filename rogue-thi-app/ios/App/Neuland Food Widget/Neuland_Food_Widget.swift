@@ -89,7 +89,7 @@ struct Neuland_Food_Widget: Widget {
             Neuland_Food_WidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Mensa Widget")
-        .description("Zeigt den aktuellen Speiseplan von Mensa und Reimanns an.")
+        .description("Zeigt den aktuellen Speiseplan von Mensa oder Reimanns an.")
         .supportedFamilies([.systemMedium, .systemLarge])
     }
 }

@@ -13,13 +13,13 @@
 		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+		B7488B1D29E863C3003AC203 /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7488B2029E863C3003AC203 /* Neuland_Food_Widget.intentdefinition */; };
+		B7488B1E29E863C3003AC203 /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7488B2029E863C3003AC203 /* Neuland_Food_Widget.intentdefinition */; };
 		B7D94AE8297C805D003DF854 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94AE7297C805D003DF854 /* MyViewController.swift */; };
 		B7D94AEA297C808C003DF854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D94AE9297C808C003DF854 /* Assets.xcassets */; };
 		B7D94AF1297C8327003DF854 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D94AF0297C8326003DF854 /* WidgetKit.framework */; };
 		B7D94AF3297C8327003DF854 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D94AF2297C8327003DF854 /* SwiftUI.framework */; };
 		B7D94AFB297C8328003DF854 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D94AFA297C8328003DF854 /* Assets.xcassets */; };
-		B7D94AFD297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */; };
-		B7D94AFE297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */; };
 		B7D94B01297C8328003DF854 /* Neuland Food WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B7D94AEF297C8326003DF854 /* Neuland Food WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B7D94B0A297C83AC003DF854 /* FoodWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B07297C83AC003DF854 /* FoodWidgetProvider.swift */; };
 		B7D94B0B297C83AC003DF854 /* Neuland_Food_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D94B08297C83AC003DF854 /* Neuland_Food_Widget.swift */; };
@@ -68,12 +68,13 @@
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		ACE1C154306C57C0EFECA3AE /* Pods-neuland.app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-neuland.app.release.xcconfig"; path = "Pods/Target Support Files/Pods-neuland.app/Pods-neuland.app.release.xcconfig"; sourceTree = "<group>"; };
 		AF51FD2D460BCFE21FA515B2 /* Pods-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-App/Pods-App.release.xcconfig"; sourceTree = "<group>"; };
+		B7488B1F29E863C3003AC203 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/Neuland_Food_Widget.intentdefinition; sourceTree = "<group>"; };
+		B7488B2229E863CB003AC203 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Neuland_Food_Widget.strings; sourceTree = "<group>"; };
 		B7D94AE7297C805D003DF854 /* MyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		B7D94AE9297C808C003DF854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7D94AEF297C8326003DF854 /* Neuland Food WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Neuland Food WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D94AF0297C8326003DF854 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		B7D94AF2297C8327003DF854 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Neuland_Food_Widget.intentdefinition; sourceTree = "<group>"; };
 		B7D94AFA297C8328003DF854 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7D94AFC297C8328003DF854 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7D94B07297C83AC003DF854 /* FoodWidgetProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodWidgetProvider.swift; sourceTree = "<group>"; };
@@ -170,7 +171,7 @@
 			children = (
 				B7D94B07297C83AC003DF854 /* FoodWidgetProvider.swift */,
 				B7D94B08297C83AC003DF854 /* Neuland_Food_Widget.swift */,
-				B7D94AF9297C8327003DF854 /* Neuland_Food_Widget.intentdefinition */,
+				B7488B2029E863C3003AC203 /* Neuland_Food_Widget.intentdefinition */,
 				B7D94AFA297C8328003DF854 /* Assets.xcassets */,
 				B7D94AFC297C8328003DF854 /* Info.plist */,
 			);
@@ -341,7 +342,7 @@
 			files = (
 				B7D94AE8297C805D003DF854 /* MyViewController.swift in Sources */,
 				B7D94B15297C841C003DF854 /* FoodTypes.swift in Sources */,
-				B7D94AFE297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */,
+				B7488B1D29E863C3003AC203 /* Neuland_Food_Widget.intentdefinition in Sources */,
 				B7D94B13297C841C003DF854 /* NeulandAPI.swift in Sources */,
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
 				B7D94B11297C841C003DF854 /* Helper.swift in Sources */,
@@ -357,7 +358,7 @@
 				B7D94B14297C841C003DF854 /* NeulandAPI.swift in Sources */,
 				B7D94B12297C841C003DF854 /* Helper.swift in Sources */,
 				B7D94B16297C841C003DF854 /* FoodTypes.swift in Sources */,
-				B7D94AFD297C8328003DF854 /* Neuland_Food_Widget.intentdefinition in Sources */,
+				B7488B1E29E863C3003AC203 /* Neuland_Food_Widget.intentdefinition in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +387,15 @@
 				504EC3111FED79650016851F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B7488B2029E863C3003AC203 /* Neuland_Food_Widget.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7488B1F29E863C3003AC203 /* Base */,
+				B7488B2229E863CB003AC203 /* en */,
+			);
+			name = Neuland_Food_Widget.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

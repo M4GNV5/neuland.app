@@ -1,0 +1,26 @@
+"7f41IH-DLPVCL" = "Just to confirm, you wanted ‘Mensa’?";
+
+"7f41IH-LnsyqM" = "Just to confirm, you wanted ‘Location’?";
+
+"7f41IH-hiV16G" = "Just to confirm, you wanted ‘Reimanns’?";
+
+"DLPVCL" = "Mensa";
+
+"LnsyqM" = "Location";
+
+"OD4mHK-DLPVCL" = "There are ${count} options matching ‘Mensa’.";
+
+"OD4mHK-LnsyqM" = "There are ${count} options matching ‘Location’.";
+
+"OD4mHK-hiV16G" = "There are ${count} options matching ‘Reimanns’.";
+
+"aF8ynf" = "Location";
+
+"gpCwrM" = "Configuration";
+
+"hiV16G" = "Reimanns";
+
+"iAiyVP" = "Location";
+
+"tVvJ9c" = "Sets the location of the canteen to be displayed.";
+
