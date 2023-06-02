@@ -1,7 +1,7 @@
 import { Capacitor } from '@capacitor/core'
 import obtainFetchImplementation from '../fetch-implementations'
 
-const ENDPOINT = Capacitor.isNativePlatform() ? 'https://neuland.app' : ''
+const ENDPOINT = Capacitor.isNativePlatform() ? 'https://dev.neuland.app' : ''
 const ENDPOINT_MODE = process.env.NEXT_PUBLIC_NEULAND_API_MODE || 'direct'
 const ENDPOINT_HOST = process.env.NEXT_PUBLIC_NEULAND_API_HOST || ''
 
