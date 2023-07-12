@@ -6,7 +6,7 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "standard",
+        "standard-with-typescript",
         "next",
         "next/core-web-vitals"
     ],
@@ -15,7 +15,8 @@
             "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "noUnusedLocals": true
     },
     "plugins": [
         "react"
