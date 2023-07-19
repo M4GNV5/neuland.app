@@ -10,13 +10,20 @@
         "next",
         "next/core-web-vitals"
     ],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
-        "ecmaVersion": 12,
+
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "ecmaVersion": 2021,
         "sourceType": "module",
-        "noUnusedLocals": true
+        "project": "./tsconfig.json",
+        "tsconfigRootDir": "./"
+
     },
     "plugins": [
         "react"
@@ -26,7 +33,6 @@
         "import/no-anonymous-default-export": "off",
         "sort-imports": ["warn", {
             "allowSeparatedGroups": true
-        }],
-        "dot-notation": "off"
+        }]
     }
 }
